@@ -17,7 +17,7 @@ int main() {
 	DuzaLiczba l5 = l4;
 	DuzaLiczba l6(-987654);
 
-	//DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
+	DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
 
 	//// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	//// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 
@@ -30,7 +30,7 @@ int main() {
 	//cin >> l1;
 	//// przedefiniowany operator <<
 	//cout << l1 << l2 << l3 << l4 << l5 << l6 << *l7;
-
+	cout << l1 << l2 << l3 << l4 << l5 << l6;
 	//// usuniêcie obiektu wskazywanego przez l7
 	//delete l7;
 

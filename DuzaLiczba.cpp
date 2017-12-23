@@ -15,6 +15,7 @@ DuzaLiczba::DuzaLiczba(int number) {
 	char const* tmp_number = s.c_str();
 	mNumber = copyString(tmp_number);
 	
+	
 	//D³ugoœæ podanej wartoœci
 	mLenght = strlen(mNumber);
 
@@ -31,7 +32,7 @@ DuzaLiczba::DuzaLiczba(int number) {
 DuzaLiczba::DuzaLiczba(char* number) : mNumber(number),mLenght(strlen(number))  {	
 
 
-	deleteSpaces(mNumber);
+	mNumber = deleteSpaces(mNumber);
 
 	//Czy dodatnia?
 	if (mNumber[0] == '-') {
@@ -83,18 +84,26 @@ char* DuzaLiczba::copyString(const char* cstr) {
 char* DuzaLiczba::deleteSpaces(char* cstr) {
 
 
-	/*cout << "DeleteSpaces1 , " << cstr << endl;
-	const int a = mLenght;
-	char* output = cstr;
+	cout << "deletespaces1 , " << cstr << endl;
+	int length = 0;
 	for (int i = 0; i < mLenght; i++) {
 		if (cstr[i] != ' ') {
-			*output++ = *cstr;
+			length++;
 		}
-		cstr++;
-		
-	}*/
-	cout << "DeleteSpaces2 , " << output << endl;
-	return cstr;
+	}
+
+	char* output = new char[length+1];
+
+	int k = 0;
+	for (int i = 0; i < mLenght; i++) {
+		if (cstr[i] != ' ') {
+			output[k++] = cstr[i];
+		}
+	}
+
+	output[k] = 0;
+	cout << "deletespaces2 , " << output << endl;
+	return output;
 
 
 }
