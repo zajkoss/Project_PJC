@@ -31,8 +31,12 @@ DuzaLiczba::DuzaLiczba(int number) {
 
 DuzaLiczba::DuzaLiczba(char* number) : mNumber(number),mLenght(strlen(number))  {	
 
-
+	//Ewentulane spacje
 	mNumber = deleteSpaces(mNumber);
+	mLenght = strlen(mNumber);
+
+	//Check 
+	
 
 	//Czy dodatnia?
 	if (mNumber[0] == '-') {
@@ -45,7 +49,7 @@ DuzaLiczba::DuzaLiczba(char* number) : mNumber(number),mLenght(strlen(number))  
 	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor char, " << mNumber << " , " << isPositive << endl;
 };
 
-DuzaLiczba::DuzaLiczba(DuzaLiczba &copy) : mNumber(copy.mNumber),mLenght(copy.mLenght),isPositive(copy.isPositive) {
+DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : mNumber(copy.mNumber),mLenght(copy.mLenght),isPositive(copy.isPositive) {
 
 	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor copy, " << mNumber << " , " << isPositive << endl;
 
@@ -120,53 +124,131 @@ istream& operator>>(istream& stream, const DuzaLiczba& item) {
 	return stream;
 }
 
-//DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) {
-//
-//	
-//
-//	/*if (this->mLenght >= addNumber.mLenght) {
-//		DuzaLiczba& longerNum = *this;
-//		DuzaLiczba shorterNum = addNumber;
-//	}
-//	else  if (this->mLenght < addNumber.mLenght) {
-//		DuzaLiczba& longerNum = addNumber;
-//		DuzaLiczba shorterNum = *this;
-//	}*/
-//
-//	char* longerNum = "19999";
-//		char* shorterNum = "2222";
-//		bool ct_one = false;
-//
-//		int k = strlen(longerNum);
-//		for (int i = strlen(shorterNum); i >= shorterNum[0]; i--) {
-//
-//
-//			
-//			//Konwersja
-//			int a = shorterNum[i] - '0';
-//			int b = longerNum[k] - '0';
-//
-//			cout << "Liczby : " << a << " " << b << endl;
-//			if (ct_one == true) {
-//				b += 1;
-//				ct_one = false;
-//			}
-//
-//			int sum = a + b;
-//			cout << "Suma " << sum << endl;
-//			if (sum >= 10) {
-//				ct_one = true;
-//				sum -= 10;
-//			}
-//			cout << "Suma po weryfikacji " << sum;
-//			longerNum[k] = sum + '0';
-//			k--;
-//			
-//			cout << "Pojedyncza czesc liczby " << longerNum[k] << endl;
-//		}
-//		cout << longerNum;
-//		
-//		return NULL;
-//
-//
-//}
+DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) {
+
+	DuzaLiczba longerNum;
+	DuzaLiczba shorterNum;
+
+
+	if (this->mLenght >= addNumber.mLenght) {
+		 longerNum = *this;
+		 shorterNum = addNumber;
+	}
+	else  if (this->mLenght < addNumber.mLenght) {
+		 longerNum = addNumber;
+		 shorterNum = *this;
+	}
+
+	int j = longerNum.mLenght - 1;
+	bool ct_one = false;
+	for (int i = shorterNum.mLenght-1; i >=0 ; i--) {
+
+		int a = shorterNum.mNumber[i] - '0';
+		int b = longerNum.mNumber[j] - '0';
+		int c = a + b;
+		//cout << c << "=" << a << "+" << b << endl;
+	
+		if (ct_one == true) {
+			c += 1;
+			ct_one = false;
+		}
+		//cout << c << endl;
+
+		if (c >= 10) {
+			ct_one = true;
+			c -= 10;
+		}
+		cout << c  ;
+	
+		longerNum.mNumber[j--] = c + '0';
+		
+	}
+
+	
+	if (ct_one == true) {
+		int b = longerNum.mNumber[j] - '0';
+		b += 1;
+		if (b >= 10) {
+			b -= 10;
+			//zrzut
+			longerNum.mNumber[j] = b + '0';
+			int x = longerNum.mNumber[j-1] - '0';
+			x += 1;
+			//zrzut
+			longerNum.mNumber[j-1] = x + '0';
+		}
+		else {
+			longerNum.mNumber[j] = b + '0';
+		}
+
+		
+	}
+	cout << endl;
+	cout << longerNum;
+	//cout << endl;
+	//cout << shorterNum;
+	cout << endl;
+
+	return *this;
+}
+
+DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba substractNumber) {
+
+	DuzaLiczba longerNum;
+	DuzaLiczba shorterNum;
+
+	if (this->mLenght >= substractNumber.mLenght) {
+		longerNum = *this;
+		shorterNum = substractNumber;
+	}
+	else  if (this->mLenght < substractNumber.mLenght) {
+		longerNum = substractNumber;
+		shorterNum = *this;
+	}
+
+	int j = longerNum.mLenght - 1;
+	bool ct_one = false;
+	for (int i = shorterNum.mLenght - 1; i >= 0; i--) {
+
+
+
+
+		int a = shorterNum.mNumber[i] - '0';
+		int b = longerNum.mNumber[j] - '0';
+
+		if (ct_one == true) {
+			b -= 1;
+			ct_one = false;
+		}
+
+		if (b < a) {
+			b += 10;
+			ct_one = true;
+
+		}
+		int c = b - a;
+
+		
+
+		
+		longerNum.mNumber[j--] =  c + '0';
+	}
+
+	/*if (ct_one == true) {
+		int b = longerNum.mNumber[j] - '0';
+		b += 1;
+		if (b >= 10) {
+			b -= 10;
+			longerNum.mNumber[j] = b + '0';
+			int x = longerNum.mNumber[j - 1] - '0';
+			x += 1;
+			longerNum.mNumber[j - 1] = x + '0';
+		}
+		else {
+			longerNum.mNumber[j] = b + '0';
+		}
+	}*/
+	cout << longerNum;
+	cout << endl;
+	return longerNum;
+}

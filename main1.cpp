@@ -19,6 +19,16 @@ int main() {
 
 	DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
 
+	//TEST
+	/*DuzaLiczba t1("9999");
+	DuzaLiczba t2("999");
+	t1.add(t2);*/
+
+	DuzaLiczba t3("100");
+	DuzaLiczba t4("20");
+	t3.subtract(t4);
+
+
 	//// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	//// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 
 	//// natomiast obiekt wskazywany przez wskaŸnik l7 jest 
@@ -30,7 +40,7 @@ int main() {
 	//cin >> l1;
 	//// przedefiniowany operator <<
 	//cout << l1 << l2 << l3 << l4 << l5 << l6 << *l7;
-	cout << l1 << l2 << l3 << l4 << l5 << l6;
+	//cout << l1 << l2 << l3 << l4 << l5 << l6;
 	//// usuniêcie obiektu wskazywanego przez l7
 	//delete l7;
 
