@@ -99,6 +99,18 @@ char* DuzaLiczba::deleteSpaces(char* cstr) {
 
 }
 
+//=============== OPERATORY IN/OUT ==================
+
+ostream& operator<<(ostream& stream, const DuzaLiczba& item) {
+	stream << item.mNumber;
+	return stream;
+}
+
+istream& operator>>(istream& stream, const DuzaLiczba& item) {
+	stream >> item.mNumber;
+	return stream;
+}
+
 //DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) {
 //
 //	

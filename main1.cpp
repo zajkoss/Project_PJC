@@ -17,7 +17,7 @@ int main() {
 	DuzaLiczba l5 = l4;
 	DuzaLiczba l6(-987654);
 
-	DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
+	//DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
 
 	//// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	//// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 

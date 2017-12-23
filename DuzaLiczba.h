@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+using namespace std;
 
 class DuzaLiczba {
 private: 
@@ -16,6 +18,9 @@ public:
 	DuzaLiczba(int number);
 	DuzaLiczba(char* number = "0");
 	DuzaLiczba(DuzaLiczba &copy);
+	
+	friend istream& operator>>(istream&, const DuzaLiczba&);
+	friend ostream& operator<<(ostream&, const DuzaLiczba&);
 
 
 };
