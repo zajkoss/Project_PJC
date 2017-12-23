@@ -1,21 +1,23 @@
 #include "stdafx.h"
 
 #include "DuzaLiczba.h" 
+#include <iostream>
 
 int main() {
-	//// konstruktor bezargumentowy inicjalizuje obiekt wartoœci¹ 0
-	//DuzaLiczba l1;
-	//// konstruktor z argumentem typu int inicjalizuje obiekt wartoœci¹ sta³o-liczbow¹
-	//DuzaLiczba l2(9999);
-	//// konstruktor z argumentem typu char* inicjalizuje obiekt podan¹ wartoœci¹
-	//DuzaLiczba l3("999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
-	//// konstruktor kopiuj¹cy g³êboko
-	//DuzaLiczba l4(l3);
-	//// te¿ konstruktor kopiuj¹cy g³êboko
-	//DuzaLiczba l5 = l4;
-	//DuzaLiczba l6(-987654);
+	
+	// konstruktor bezargumentowy inicjalizuje obiekt wartoœci¹ 0
+	DuzaLiczba l1;
+	// konstruktor z argumentem typu int inicjalizuje obiekt wartoœci¹ sta³o-liczbow¹
+	DuzaLiczba l2(9999);
+	// konstruktor z argumentem typu char* inicjalizuje obiekt podan¹ wartoœci¹
+	DuzaLiczba l3("999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999");
+	////// konstruktor kopiuj¹cy g³êboko
+	DuzaLiczba l4(l3);
+	////// te¿ konstruktor kopiuj¹cy g³êboko
+	DuzaLiczba l5 = l4;
+	DuzaLiczba l6(-987654);
 
-	//DuzaLiczba *l7 = new DuzaLiczba(“ - 999999999999999999999999999999”);
+	DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
 
 	//// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	//// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 
@@ -69,6 +71,6 @@ int main() {
 	//	silnia = !l2;
 	//	cout << silnia;
 	//}
-
+	system("pause");
 	return 0;
 }
