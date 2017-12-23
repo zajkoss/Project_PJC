@@ -252,3 +252,38 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba substractNumber) {
 	cout << endl;
 	return longerNum;
 }
+
+DuzaLiczba DuzaLiczba::changeSign() {
+
+	DuzaLiczba output = *this;
+
+	if (output.isPositive) {
+		// +2    '-' and 0
+		char *temporary = new char[output.mLenght + 2];
+		temporary[0] = '-';
+		for (int i = 0; i < output.mLenght; i++) {
+			temporary[i + 1] = output.mNumber[i];
+		}
+		temporary[output.mLenght + 2] = 0;
+		delete[] output.mNumber;
+		output.mNumber = temporary;
+		output.mLenght = strlen(output.mNumber);
+		output.isPositive = false;
+
+	}
+	else if(!output.isPositive){
+		// '-' out
+		char *temporary = new char[output.mLenght ];
+		for (int i = 0; i < output.mLenght; i++) {
+			temporary[i] = output.mNumber[i];
+		}
+		temporary[output.mLenght] = 0;
+		delete[] output.mNumber;
+		output.mNumber = temporary;
+		output.mLenght = strlen(output.mNumber);
+		output.isPositive = true;
+	}
+
+	return output;
+
+}
