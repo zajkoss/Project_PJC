@@ -46,7 +46,7 @@ DuzaLiczba::DuzaLiczba(char* number) : mNumber(number),mLenght(strlen(number))  
 		isPositive = true;
 	}
 
-	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor char, " << mNumber << " , " << isPositive << endl;
+	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor char, " << mNumber << " , " << isPositive <<"," << mLenght << endl;
 };
 
 DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : mNumber(copy.mNumber),mLenght(copy.mLenght),isPositive(copy.isPositive) {
@@ -194,63 +194,52 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) {
 
 DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba substractNumber) {
 
-	DuzaLiczba longerNum;
-	DuzaLiczba shorterNum;
+	DuzaLiczba output = *this;
+	
 
-	if (this->mLenght >= substractNumber.mLenght) {
-		longerNum = *this;
-		shorterNum = substractNumber;
+	if (equal(substractNumber)) {
+		//zwroc zerooo
 	}
-	else  if (this->mLenght < substractNumber.mLenght) {
-		longerNum = substractNumber;
-		shorterNum = *this;
+	// Zak³adam, ¿e zawsze wieksza jest tego samego znaku
+	if (bigger(substractNumber)) {
+		for (int i = substractNumber.mLenght - 1; i >= substractNumber.mNumber[0]; i--) {
+			int b = substractNumber.mNumber[i] - '0';
+			int a = output.mNumber[i] - '0';
+			int c = a - b;
+			output.mNumber[i] = c + '0';
+		}
+		for (int i = mLenght - 1; i >= mNumber[0]; i--) {
+			
+			int a = output.mNumber[i] - '0';
+			if (a < 0 && i != mNumber[0]) {
+				a += 10;
+				int b = output.mNumber[i - 1] - '0';
+				b -= 1;
+				output.mNumber[i - 1] = b + '0';
+			}
+		}
+		{
+			int a = output.mNumber[0] - '0';
+			if (a == 0) {
+				//Nowy c-string bez pierwszego znaku
+				char* tmp = new char[mLenght];
+				tmp[mLenght] = 0;
+				for (int i = 1; i < mLenght; i++) {
+					tmp[i - 1] = output.mNumber[i];
+				}
+				delete[]output.mNumber;
+				output.mNumber = tmp;
+			}
+		}
+
+
+	}else {
+		//substractNumber.subtract(*this).changeSign();
 	}
 
-	int j = longerNum.mLenght - 1;
-	bool ct_one = false;
-	for (int i = shorterNum.mLenght - 1; i >= 0; i--) {
 
 
-
-
-		int a = shorterNum.mNumber[i] - '0';
-		int b = longerNum.mNumber[j] - '0';
-
-		if (ct_one == true) {
-			b -= 1;
-			ct_one = false;
-		}
-
-		if (b < a) {
-			b += 10;
-			ct_one = true;
-
-		}
-		int c = b - a;
-
-		
-
-		
-		longerNum.mNumber[j--] =  c + '0';
-	}
-
-	/*if (ct_one == true) {
-		int b = longerNum.mNumber[j] - '0';
-		b += 1;
-		if (b >= 10) {
-			b -= 10;
-			longerNum.mNumber[j] = b + '0';
-			int x = longerNum.mNumber[j - 1] - '0';
-			x += 1;
-			longerNum.mNumber[j - 1] = x + '0';
-		}
-		else {
-			longerNum.mNumber[j] = b + '0';
-		}
-	}*/
-	cout << longerNum;
-	cout << endl;
-	return longerNum;
+	return output;
 }
 
 DuzaLiczba DuzaLiczba::changeSign() {
@@ -287,3 +276,61 @@ DuzaLiczba DuzaLiczba::changeSign() {
 	return output;
 
 }
+
+bool DuzaLiczba::bigger(const DuzaLiczba compare) {
+
+	// Dodatnia , ujemna
+	if (isPositive && !compare.isPositive)
+		return true;
+	else if (!isPositive && compare.isPositive)
+		return false;
+
+	//Dodatnie
+	if (isPositive && compare.isPositive) {
+		if (mLenght > compare.mLenght)
+			return true;
+		else if (mLenght < compare.mLenght)
+			return false;
+		else if (mLenght == compare.mLenght) {
+			for (int i = 0; i < mLenght; i++) {
+				if (mNumber[i] > compare.mNumber[i])
+					return true;
+				else if (mNumber[i] < compare.mNumber[i])
+					return false;
+			}
+		}
+	}
+
+		//Ujemne
+		if (!isPositive && !compare.isPositive) {
+			if (mLenght > compare.mLenght)
+				return false;
+			else if (mLenght < compare.mLenght)
+				return true;
+			else if (mLenght == compare.mLenght) {
+				for (int i = 1; i < mLenght; i++) {
+					if (mNumber[i] > compare.mNumber[i])
+						return false;
+					else if (mNumber[i] < compare.mNumber[i])
+						return true;
+				}
+			}
+		}
+	}
+
+
+bool DuzaLiczba::equal(const DuzaLiczba compare) {
+
+	if ((isPositive && compare.isPositive) || (!isPositive && !compare.isPositive)) {
+		for (int i = 0; i < mLenght; i++) {
+			if (mNumber[i] != compare.mNumber[i])
+				return false;
+		}
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
