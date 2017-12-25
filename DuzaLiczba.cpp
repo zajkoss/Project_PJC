@@ -139,107 +139,164 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) {
 		 shorterNum = *this;
 	}
 
-	int j = longerNum.mLenght - 1;
-	bool ct_one = false;
-	for (int i = shorterNum.mLenght-1; i >=0 ; i--) {
 
-		int a = shorterNum.mNumber[i] - '0';
-		int b = longerNum.mNumber[j] - '0';
+	for (int i = 0; i < shorterNum.mLenght; i++) {
+
+		int a = shorterNum.mNumber[shorterNum.mLenght - 1 - i] - '0';
+		int b = longerNum.mNumber[longerNum.mLenght - 1 - i] - '0';
 		int c = a + b;
-		//cout << c << "=" << a << "+" << b << endl;
-	
-		if (ct_one == true) {
-			c += 1;
-			ct_one = false;
-		}
-		//cout << c << endl;
-
-		if (c >= 10) {
-			ct_one = true;
-			c -= 10;
-		}
-		cout << c  ;
-	
-		longerNum.mNumber[j--] = c + '0';
-		
+		longerNum.mNumber[longerNum.mLenght - 1 - i] = c + '0';
 	}
 
-	
-	if (ct_one == true) {
-		int b = longerNum.mNumber[j] - '0';
-		b += 1;
-		if (b >= 10) {
-			b -= 10;
-			//zrzut
-			longerNum.mNumber[j] = b + '0';
-			int x = longerNum.mNumber[j-1] - '0';
-			x += 1;
-			//zrzut
-			longerNum.mNumber[j-1] = x + '0';
-		}
-		else {
-			longerNum.mNumber[j] = b + '0';
-		}
+	for (int i = longerNum.mLenght - 1; i >= 0; i--) {
 
-		
+		int a = longerNum.mNumber[i] - '0';
+		if (a >= 10 && i != 0) {
+			a -= 10;
+			longerNum.mNumber[i] = a + '0';
+			int b = longerNum.mNumber[i - 1] - '0';
+			b += 1;
+			longerNum.mNumber[i - 1] = b + '0';
+
+		} else if (a >= 10 && i == 0) {
+			char* tmp = new char[longerNum.mLenght + 2];
+			tmp[0] = 1 + '0';
+			tmp[longerNum.mLenght + 2] = 0;
+			a -= 10;
+			longerNum.mNumber[i] = a + '0';
+			for (int i = 0; i <= longerNum.mLenght; i++) {
+				tmp[i + 1] = longerNum.mNumber[i];
+			}
+			longerNum.mNumber = tmp;
+		}
 	}
-	cout << endl;
-	cout << longerNum;
-	//cout << endl;
-	//cout << shorterNum;
-	cout << endl;
 
+	//int j = longerNum.mLenght - 1;
+	//bool ct_one = false;
+	//for (int i = shorterNum.mLenght-1; i >=0 ; i--) {
+
+	//	int a = shorterNum.mNumber[i] - '0';
+	//	int b = longerNum.mNumber[j] - '0';
+	//	int c = a + b;
+	//	//cout << c << "=" << a << "+" << b << endl;
+	//
+	//	if (ct_one == true) {
+	//		c += 1;
+	//		ct_one = false;
+	//	}
+	//	//cout << c << endl;
+
+	//	if (c >= 10) {
+	//		ct_one = true;
+	//		c -= 10;
+	//	}
+	//	cout << c  ;
+	//
+	//	longerNum.mNumber[j--] = c + '0';
+	//	
+	//}
+
+	//
+	//if (ct_one == true) {
+	//	int b = longerNum.mNumber[j] - '0';
+	//	b += 1;
+	//	if (b >= 10) {
+	//		b -= 10;
+	//		//zrzut
+	//		longerNum.mNumber[j] = b + '0';
+	//		int x = longerNum.mNumber[j-1] - '0';
+	//		x += 1;
+	//		//zrzut
+	//		longerNum.mNumber[j-1] = x + '0';
+	//	}
+	//	else {
+
+	//		longerNum.mNumber[j] = b + '0';
+
+	//	}	
+	//}
+
+	//*this = longerNum;
+	*this = longerNum;
 	return *this;
 }
 
-DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba substractNumber) {
+DuzaLiczba DuzaLiczba::subtract(DuzaLiczba &substractNumber){
 
 	DuzaLiczba output = *this;
 	
-
+	cout << "ODEJMOWANIA " << endl;
 	if (equal(substractNumber)) {
 		//zwroc zerooo
 	}
 	// Zak³adam, ¿e zawsze wieksza jest tego samego znaku
 	if (bigger(substractNumber)) {
-		for (int i = substractNumber.mLenght - 1; i >= substractNumber.mNumber[0]; i--) {
-			int b = substractNumber.mNumber[i] - '0';
-			int a = output.mNumber[i] - '0';
+		cout << "LICZBA A JEST WIEKSZA   !!!" << endl;
+		for (int i = 0 ; i < substractNumber.mLenght  ; i++) {
+			int b = substractNumber.mNumber[substractNumber.mLenght - 1 - i] - '0';
+			int a = output.mNumber[mLenght - 1 - i] - '0';
 			int c = a - b;
-			output.mNumber[i] = c + '0';
+			output.mNumber[mLenght - 1 - i] = c + '0';
+			cout << "Dzia³anie " << a << " - " << b << endl;
+			cout << "Faza1 : " << c << endl;
 		}
-		for (int i = mLenght - 1; i >= mNumber[0]; i--) {
+		for (int i = mLenght - 1 ; i >= 0 ; i--) {
 			
 			int a = output.mNumber[i] - '0';
-			if (a < 0 && i != mNumber[0]) {
+			if (a < 0 ) {
 				a += 10;
+				output.mNumber[i] = a + '0';
 				int b = output.mNumber[i - 1] - '0';
 				b -= 1;
 				output.mNumber[i - 1] = b + '0';
+				
 			}
 		}
-		{
+		
 			int a = output.mNumber[0] - '0';
 			if (a == 0) {
 				//Nowy c-string bez pierwszego znaku
 				char* tmp = new char[mLenght];
 				tmp[mLenght] = 0;
-				for (int i = 1; i < mLenght; i++) {
-					tmp[i - 1] = output.mNumber[i];
+				for (int i = 0; i < mLenght; i++) {
+					tmp[i] = output.mNumber[i + 1];
 				}
 				delete[]output.mNumber;
 				output.mNumber = tmp;
-			}
+				cout << "WYNIKA ODEJMOWANIA: " << output.mNumber << endl;
 		}
-
-
 	}else {
-		//substractNumber.subtract(*this).changeSign();
+		substractNumber.subtract(output).changeSign();
 	}
+
+	cout << "WYNIKA ODEJMOWANIA: " << output.mNumber << endl;
+
+
 
 
 
 	return output;
+}
+
+DuzaLiczba DuzaLiczba::multiply(const DuzaLiczba &multiplyNumber) {
+	
+
+	DuzaLiczba output("0");
+	DuzaLiczba multiper = multiplyNumber;
+	DuzaLiczba counter("1");
+	DuzaLiczba count("1");
+
+	while (!multiper.equal(counter)) {
+
+		
+		output.add(*this);
+		cout << "DODAWANIE " << counter.mNumber << "  WYNIK " << output << endl;
+		counter.add(count);
+	}
+
+	cout << "WYNIK MNOZENA: " <<  endl;
+	cout << output << endl;
+	return *this;
 }
 
 DuzaLiczba DuzaLiczba::changeSign() {

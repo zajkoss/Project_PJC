@@ -25,7 +25,8 @@ public:
 
 	//TO-PRIVATE
 	DuzaLiczba add(const DuzaLiczba &addNumber);
-	DuzaLiczba subtract(const DuzaLiczba addNumber);
+	DuzaLiczba subtract( DuzaLiczba &addNumber);
+	DuzaLiczba multiply(const DuzaLiczba &addNumber);
 	bool bigger(const DuzaLiczba compare);
 	bool equal(const DuzaLiczba compare);
 	DuzaLiczba changeSign();

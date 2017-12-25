@@ -20,14 +20,24 @@ int main() {
 	DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
 
 	//TEST
-	/*DuzaLiczba t1("9999");
-	DuzaLiczba t2("999");
-	t1.add(t2);*/
+	DuzaLiczba t1("8");
+	DuzaLiczba t2("4");
+	t1.add(t2);
+	cout << t1;
 
-	DuzaLiczba t3("100");
-	DuzaLiczba t4("20");
-	t3.subtract(t4);
-
+	/*DuzaLiczba t3("200");
+	DuzaLiczba t4("50");
+	t3.add(t4);
+	cout << t3;
+*/
+/*
+	DuzaLiczba t5("1000");
+	DuzaLiczba t6("120");
+	t5.subtract(t6);
+	*/
+	//DuzaLiczba t7("4");
+	//DuzaLiczba t8("5");
+	//t7.multiply(t8);
 
 	//// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	//// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 
