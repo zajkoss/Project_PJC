@@ -20,10 +20,17 @@ int main() {
 	DuzaLiczba *l7 = new DuzaLiczba(" - 999999999999999999999999999999");
 
 	//TEST
-	DuzaLiczba t1("8");
+	/*DuzaLiczba t1("12");
 	DuzaLiczba t2("4");
 	t1.add(t2);
 	cout << t1;
+	cout << endl;
+
+	DuzaLiczba tt("4");
+	t1.add(tt);
+	cout << t1;
+	cout << endl;*/
+
 
 	/*DuzaLiczba t3("200");
 	DuzaLiczba t4("50");
@@ -35,9 +42,21 @@ int main() {
 	DuzaLiczba t6("120");
 	t5.subtract(t6);
 	*/
-	//DuzaLiczba t7("4");
-	//DuzaLiczba t8("5");
-	//t7.multiply(t8);
+
+	
+	//DuzaLiczba t7("100");
+	//DuzaLiczba t8("10");
+	//t7.subtract(t8);
+	//t7.subtract(t8);
+
+
+	DuzaLiczba tt("10");
+	DuzaLiczba ttt("5");
+
+	tt.add(ttt);
+	tt.add(ttt);
+	cout << tt;
+	//tt.multiply(ttt);
 
 	//// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	//// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 

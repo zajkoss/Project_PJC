@@ -26,7 +26,7 @@ DuzaLiczba::DuzaLiczba(int number) {
 		isPositive = true;
 	}
 
-	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor int, " << mNumber << " , " << isPositive << endl;
+	//cout << "LOG.i(DuzaLiczba.cpp, Konstruktor int, " << mNumber << " , " << isPositive << endl;
 };
 
 DuzaLiczba::DuzaLiczba(char* number) : mNumber(number),mLenght(strlen(number))  {	
@@ -46,12 +46,12 @@ DuzaLiczba::DuzaLiczba(char* number) : mNumber(number),mLenght(strlen(number))  
 		isPositive = true;
 	}
 
-	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor char, " << mNumber << " , " << isPositive <<"," << mLenght << endl;
+	//cout << "LOG.i(DuzaLiczba.cpp, Konstruktor char, " << mNumber << " , " << isPositive <<"," << mLenght << endl;
 };
 
 DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : mNumber(copy.mNumber),mLenght(copy.mLenght),isPositive(copy.isPositive) {
 
-	cout << "LOG.i(DuzaLiczba.cpp, Konstruktor copy, " << mNumber << " , " << isPositive << endl;
+	//cout << "LOG.i(DuzaLiczba.cpp, Konstruktor copy, " << mNumber << " , " << isPositive << endl;
 
 }
 
@@ -88,7 +88,7 @@ char* DuzaLiczba::copyString(const char* cstr) {
 char* DuzaLiczba::deleteSpaces(char* cstr) {
 
 
-	cout << "deletespaces1 , " << cstr << endl;
+	//cout << "deletespaces1 , " << cstr << endl;
 	int length = 0;
 	for (int i = 0; i < mLenght; i++) {
 		if (cstr[i] != ' ') {
@@ -106,7 +106,7 @@ char* DuzaLiczba::deleteSpaces(char* cstr) {
 	}
 
 	output[k] = 0;
-	cout << "deletespaces2 , " << output << endl;
+	//cout << "deletespaces2 , " << output << endl;
 	return output;
 
 
@@ -168,55 +168,10 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) {
 				tmp[i + 1] = longerNum.mNumber[i];
 			}
 			longerNum.mNumber = tmp;
+			longerNum.mLenght = longerNum.mLenght + 1;
 		}
 	}
-
-	//int j = longerNum.mLenght - 1;
-	//bool ct_one = false;
-	//for (int i = shorterNum.mLenght-1; i >=0 ; i--) {
-
-	//	int a = shorterNum.mNumber[i] - '0';
-	//	int b = longerNum.mNumber[j] - '0';
-	//	int c = a + b;
-	//	//cout << c << "=" << a << "+" << b << endl;
-	//
-	//	if (ct_one == true) {
-	//		c += 1;
-	//		ct_one = false;
-	//	}
-	//	//cout << c << endl;
-
-	//	if (c >= 10) {
-	//		ct_one = true;
-	//		c -= 10;
-	//	}
-	//	cout << c  ;
-	//
-	//	longerNum.mNumber[j--] = c + '0';
-	//	
-	//}
-
-	//
-	//if (ct_one == true) {
-	//	int b = longerNum.mNumber[j] - '0';
-	//	b += 1;
-	//	if (b >= 10) {
-	//		b -= 10;
-	//		//zrzut
-	//		longerNum.mNumber[j] = b + '0';
-	//		int x = longerNum.mNumber[j-1] - '0';
-	//		x += 1;
-	//		//zrzut
-	//		longerNum.mNumber[j-1] = x + '0';
-	//	}
-	//	else {
-
-	//		longerNum.mNumber[j] = b + '0';
-
-	//	}	
-	//}
-
-	//*this = longerNum;
+	cout << "MNOZENIE" << longerNum.mNumber << endl;
 	*this = longerNum;
 	return *this;
 }
@@ -227,7 +182,8 @@ DuzaLiczba DuzaLiczba::subtract(DuzaLiczba &substractNumber){
 	
 	cout << "ODEJMOWANIA " << endl;
 	if (equal(substractNumber)) {
-		//zwroc zerooo
+		DuzaLiczba zero("0");
+		output = zero;
 	}
 	// Zak³adam, ¿e zawsze wieksza jest tego samego znaku
 	if (bigger(substractNumber)) {
@@ -261,8 +217,9 @@ DuzaLiczba DuzaLiczba::subtract(DuzaLiczba &substractNumber){
 				for (int i = 0; i < mLenght; i++) {
 					tmp[i] = output.mNumber[i + 1];
 				}
-				delete[]output.mNumber;
+				//delete[]output.mNumber;
 				output.mNumber = tmp;
+				output.mLenght = output.mLenght - 1;
 				cout << "WYNIKA ODEJMOWANIA: " << output.mNumber << endl;
 		}
 	}else {
@@ -274,7 +231,7 @@ DuzaLiczba DuzaLiczba::subtract(DuzaLiczba &substractNumber){
 
 
 
-
+	//*this = output;
 	return output;
 }
 
@@ -283,11 +240,13 @@ DuzaLiczba DuzaLiczba::multiply(const DuzaLiczba &multiplyNumber) {
 
 	DuzaLiczba output("0");
 	DuzaLiczba multiper = multiplyNumber;
-	DuzaLiczba counter("1");
+	DuzaLiczba counter("0");
 	DuzaLiczba count("1");
 
 	while (!multiper.equal(counter)) {
-
+		cout << output << endl;
+		cout << " + " << endl;
+		cout << *this << endl;
 		
 		output.add(*this);
 		cout << "DODAWANIE " << counter.mNumber << "  WYNIK " << output << endl;
@@ -298,6 +257,26 @@ DuzaLiczba DuzaLiczba::multiply(const DuzaLiczba &multiplyNumber) {
 	cout << output << endl;
 	return *this;
 }
+
+
+DuzaLiczba DuzaLiczba::divide(const DuzaLiczba &addNumber) {
+
+	DuzaLiczba counter("0");
+	DuzaLiczba count("1");
+	DuzaLiczba divide(*this);
+	DuzaLiczba divider = addNumber;
+
+	while (divide.bigger(divider)) {
+		cout << "DZIELENIE: " << divide.mNumber << " // " << divider.mNumber << endl;
+		divide.subtract(divider);
+		counter.add(count);
+
+	}
+
+	cout << counter.mNumber << " TO JEST WYNIK" << endl;
+	return counter;
+}
+
 
 DuzaLiczba DuzaLiczba::changeSign() {
 
