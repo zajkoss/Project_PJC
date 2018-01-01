@@ -22,14 +22,33 @@ public:
 	friend istream& operator>>(istream&, const DuzaLiczba&);
 	friend ostream& operator<<(ostream&, const DuzaLiczba&);
 
+	DuzaLiczba operator+(const DuzaLiczba&) ;
+	DuzaLiczba operator-(const DuzaLiczba&) ;
+	DuzaLiczba operator*(const DuzaLiczba&) ;
+	DuzaLiczba operator/(const DuzaLiczba&) ;
+
+	DuzaLiczba & operator+=(const DuzaLiczba& value);
+	DuzaLiczba & operator-=(const DuzaLiczba& value);
+	DuzaLiczba & operator*=(const DuzaLiczba& value);
+	DuzaLiczba & operator/=(const DuzaLiczba& value);
+
+
+	friend bool operator!=(const DuzaLiczba &a, const DuzaLiczba &b);
+	friend bool operator==(const DuzaLiczba &a , const DuzaLiczba &b);
+	friend bool operator>=(const DuzaLiczba &a , const DuzaLiczba &b);
+	friend bool operator<(const DuzaLiczba &a , const DuzaLiczba &b);
+	friend DuzaLiczba operator!(const DuzaLiczba & a);
+	friend DuzaLiczba operator-(const DuzaLiczba & a);
+
+	DuzaLiczba& operator=(const DuzaLiczba& value);
 
 	//TO-PRIVATE
-	DuzaLiczba add(const DuzaLiczba &addNumber);
-	DuzaLiczba subtract( DuzaLiczba &addNumber);
-	DuzaLiczba multiply(const DuzaLiczba &addNumber);
-	DuzaLiczba divide(const DuzaLiczba &addNumber);
-	bool bigger(const DuzaLiczba compare);
-	bool equal(const DuzaLiczba compare);
-	DuzaLiczba changeSign();
+	DuzaLiczba add(const DuzaLiczba &addNumber) const;
+	DuzaLiczba subtract(const DuzaLiczba &addNumber) const;
+	DuzaLiczba multiply(const DuzaLiczba &addNumber) const;
+	DuzaLiczba divide(const DuzaLiczba &addNumber) const;
+	bool bigger(const DuzaLiczba& compare) const;
+	bool equal(const DuzaLiczba &compare) const;
+	DuzaLiczba changeSign() const;
 
 };
