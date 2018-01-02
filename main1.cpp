@@ -3,7 +3,7 @@
 #include "DuzaLiczba.h" 
 #include <iostream>
 
-int main() {
+/*int main() {
 
 	// konstruktor bezargumentowy inicjalizuje obiekt wartoœci¹ 0
 	DuzaLiczba l1;
@@ -33,7 +33,7 @@ int main() {
 
 	// przedefiniowany operator =
 	l1 = l2;
-	// przedefiniowane operatory +-*/ dzielenie ca³kowite
+	// przedefiniowane operatory +- dzielenie ca³kowite
 	//l1 = l1 + l2 - l3 * l4 / l5;
 
 	// przedefiniowany operator +=
@@ -72,4 +72,4 @@ int main() {
 
 	system("pause");
 	return 0;
-}
+}*/
