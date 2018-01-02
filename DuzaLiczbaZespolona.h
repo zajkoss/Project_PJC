@@ -11,10 +11,8 @@ class DuzaLiczbaZespolona {
 
 public:
 	//TO-PRIVATE
-	DuzaLiczbaZespolona(int, int);
-	DuzaLiczbaZespolona(int);
+	DuzaLiczbaZespolona(int, int = 0);
 	DuzaLiczbaZespolona(char* = "0", char * = "0");
-	DuzaLiczbaZespolona(char*);
 	DuzaLiczbaZespolona(const DuzaLiczbaZespolona& copy);
 
 };

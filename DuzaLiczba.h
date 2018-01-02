@@ -6,7 +6,7 @@ using namespace std;
 class DuzaLiczba {
 private: 
 	bool isPositive;
-	char* mNumber;
+	char* wartosc;
 	int mLenght;
 
 	bool valid(char* cstr);

@@ -13,7 +13,7 @@ int main() {
 	// inicjalizuje obiekt wartoœci¹ (134,394)
 	DuzaLiczbaZespolona l2a(134, 394);
 
-	/*
+	
 	// konstruktor z argumentem typu char* inicjalizuje obiekt podan¹ 
 	// wartoœci¹ (“1728390”)
 	DuzaLiczbaZespolona l3("1728390");
@@ -29,7 +29,7 @@ int main() {
 	DuzaLiczbaZespolona l6(-172834);
 
 	DuzaLiczbaZespolona *l7 = new DuzaLiczbaZespolona("-172839023498234792834798237494");
-
+	/*
 	// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 
 	// natomiast obiekt wskazywany przez wskaŸnik l7 jest obiektem
