@@ -49,11 +49,14 @@ int main() {
 	// przedefiniowane operatory +-* /  dzielenie ca³kowite       
 
 	//MAJNE TESTY
-	DuzaLiczbaZespolona p1(4, 2);
-	DuzaLiczbaZespolona p2(2, 1);
-	DuzaLiczbaZespolona p3;
+	//DuzaLiczbaZespolona p1(2, 2);
+	DuzaLiczba*l7 = new DuzaLiczba("-172839023498234792834798237494");
+	delete l7;
+	//DuzaLiczbaZespolona p3;
 	
-
+	//if (p1 < "2") {
+	//	cout << "ELO";
+	//}
 	/*DuzaLiczba p01(50);
 	DuzaLiczba p02("-1");
 	DuzaLiczba p03;

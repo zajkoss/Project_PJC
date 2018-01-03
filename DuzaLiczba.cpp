@@ -124,6 +124,12 @@ istream& operator>>(istream& stream, const DuzaLiczba& item) {
 	return stream;
 }
 
+DuzaLiczba::~DuzaLiczba()
+{
+	cout << "DESTRUKTOR" << endl;
+	delete[] wartosc;
+}
+
 DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 
 	DuzaLiczba longerNum;

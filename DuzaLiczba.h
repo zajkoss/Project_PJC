@@ -14,10 +14,20 @@ private:
 	char* deleteSpaces(char* cstr);
 	
 
+	DuzaLiczba add(const DuzaLiczba &addNumber) const;
+	DuzaLiczba subtract(const DuzaLiczba &addNumber) const;
+	DuzaLiczba multiply(const DuzaLiczba &addNumber) const;
+	DuzaLiczba divide(const DuzaLiczba &addNumber) const;
+	bool bigger(const DuzaLiczba& compare) const;
+	bool equal(const DuzaLiczba &compare) const;
+	DuzaLiczba changeSign() const;
+
 public:
 	DuzaLiczba(int number);
 	DuzaLiczba(char* number = "0");
 	DuzaLiczba(const DuzaLiczba &copy);
+
+	virtual ~DuzaLiczba();
 	
 	friend istream& operator>>(istream&, const DuzaLiczba&);
 	friend ostream& operator<<(ostream&, const DuzaLiczba&);
@@ -43,12 +53,6 @@ public:
 	DuzaLiczba& operator=(const DuzaLiczba& value);
 
 	//TO-PRIVATE
-	DuzaLiczba add(const DuzaLiczba &addNumber) const;
-	DuzaLiczba subtract(const DuzaLiczba &addNumber) const;
-	DuzaLiczba multiply(const DuzaLiczba &addNumber) const;
-	DuzaLiczba divide(const DuzaLiczba &addNumber) const;
-	bool bigger(const DuzaLiczba& compare) const;
-	bool equal(const DuzaLiczba &compare) const;
-	DuzaLiczba changeSign() const;
+	
 
 };
