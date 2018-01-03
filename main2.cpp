@@ -4,6 +4,7 @@
 
 
 int main() {
+	/*
 	// konstruktor bezargumentowy inicjalizuje obiekt wartoœci¹ (0,0)
 	DuzaLiczbaZespolona l1;
 	// konstruktor z argumentem typu int inicjalizuje obiekt 
@@ -29,7 +30,7 @@ int main() {
 	DuzaLiczbaZespolona l6(-172834);
 
 	DuzaLiczbaZespolona *l7 = new DuzaLiczbaZespolona("-172839023498234792834798237494");
-	/*
+	
 	// Wszystkie obiekty od l1 do l6 s¹ obiektami statycznymi, 
 	// tzn. istniej¹ od pocz¹tku do koñca dzia³ania funkcji main 
 	// natomiast obiekt wskazywany przez wskaŸnik l7 jest obiektem
@@ -40,12 +41,29 @@ int main() {
 	cout << l1 << l2 << l3 << l4 << l5 << l6 << *l7;
 	cout << l2a << l3a;
 	// usuniêcie obiektu wskazywanego przez l7
-	delete l7;
+	//delete l7;
 
 	// przedefiniowany operator =
 	l1 = l2;
-	// przedefiniowane operatory +-* /  dzielenie ca³kowite            
-	l1 = l1 + l2 - l3 * l4 / l5;
+	cout << l1;   */
+	// przedefiniowane operatory +-* /  dzielenie ca³kowite       
+
+	//MAJNE TESTY
+	DuzaLiczbaZespolona p1(4, 2);
+	DuzaLiczbaZespolona p2(2, 1);
+	DuzaLiczbaZespolona p3;
+	
+
+	/*DuzaLiczba p01(50);
+	DuzaLiczba p02("-1");
+	DuzaLiczba p03;
+	p03 = p01 * p02;
+	cout << p03;*/
+
+
+
+
+	/*l1 = l1 + l2 - l3 * l4 / l5;
 
 	// przedefiniowany operator += - zwiêkszenie sk³adowej rzeczywistej liczby l1 o 23
 	l1 += 23;
