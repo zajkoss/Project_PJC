@@ -14,6 +14,8 @@ public:
 	DuzaLiczbaZespolona(char* = "0", char * = "0");
 	DuzaLiczbaZespolona(const DuzaLiczbaZespolona& copy);
 
+	virtual ~DuzaLiczbaZespolona();
+
 	friend istream& operator>>(istream&, const DuzaLiczbaZespolona&);
 	friend ostream& operator<<(ostream&, const DuzaLiczbaZespolona&);
 
