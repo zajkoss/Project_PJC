@@ -8,54 +8,35 @@ using namespace std;
 
 
 DuzaLiczba::DuzaLiczba(int number) {
-
-
-	//Konwersja Integer na C-String 
+	
 	string s = to_string(number);
 	char const* tmp_number = s.c_str();
 	wartosc = copyString(tmp_number);
 	
-	
-	//D³ugoœæ podanej wartoœci
 	mLenght = strlen(wartosc);
-
-	//Czy dodatnia?
+	
 	if(wartosc[0] == '-'){
 		isPositive = false;
 	} else {
 		isPositive = true;
 	}
-
-	//cout << "LOG.i(DuzaLiczba.cpp, Konstruktor int, " << mNumber << " , " << isPositive << endl;
 };
 
 DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),mLenght(strlen(number))  {	
 
-	//Ewentulane spacje
 	wartosc = deleteSpaces(wartosc);
-	mLenght = strlen(wartosc);
+	mLenght = strlen(wartosc);	
 
-	//Check 
-	
-
-	//Czy dodatnia?
 	if (wartosc[0] == '-') {
 		isPositive = false;
-	}
-	else {
+	}else {
 		isPositive = true;
 	}
-
-	//cout << "LOG.i(DuzaLiczba.cpp, Konstruktor char, " << mNumber << " , " << isPositive <<"," << mLenght << endl;
 };
 
 DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),mLenght(copy.mLenght),isPositive(copy.isPositive) {
-
-	//cout << "LOG.i(DuzaLiczba.cpp, Konstruktor copy, " << mNumber << " , " << isPositive << endl;
-
 }
 
-//Walidacja c-stringa 
 bool DuzaLiczba::valid(char* cstr) {
 
 	if (cstr[0] = '-' || isdigit(cstr[0])) {
@@ -87,8 +68,6 @@ char* DuzaLiczba::copyString(const char* cstr) {
 
 char* DuzaLiczba::deleteSpaces(char* cstr) {
 
-
-	//cout << "deletespaces1 , " << cstr << endl;
 	int length = 0;
 	for (int i = 0; i < mLenght; i++) {
 		if (cstr[i] != ' ') {
@@ -104,15 +83,9 @@ char* DuzaLiczba::deleteSpaces(char* cstr) {
 			output[k++] = cstr[i];
 		}
 	}
-
 	output[k] = 0;
-	//cout << "deletespaces2 , " << output << endl;
 	return output;
-
-
 }
-
-//=============== OPERATORY IN/OUT ==================
 
 ostream& operator<<(ostream& stream, const DuzaLiczba& item) {
 	stream << item.wartosc;
@@ -126,7 +99,6 @@ istream& operator>>(istream& stream, const DuzaLiczba& item) {
 
 DuzaLiczba::~DuzaLiczba()
 {
-	cout << "DESTRUKTOR" << endl;
 	delete[] wartosc;
 }
 
@@ -135,17 +107,14 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 	DuzaLiczba longerNum;
 	DuzaLiczba shorterNum;
 
-
 	if (this->mLenght >= addNumber.mLenght) {
 		 longerNum = *this;
 		 shorterNum = addNumber;
-
 	}
 	else  if (this->mLenght < addNumber.mLenght) {
 		 longerNum = addNumber;
 		 shorterNum = *this;
 	}
-
 
 	for (int i = 0; i < shorterNum.mLenght; i++) {
 
@@ -180,8 +149,6 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 			longerNum.mLenght = longerNum.mLenght + 1;
 		}
 	}
-	cout << "DODAWANIE = " << longerNum.wartosc << endl;
-
 	return longerNum;
 }
 
@@ -190,12 +157,10 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 	DuzaLiczba output = *this;
 	
 	if (equal(substractNumber)) {
-		cout << "ROWNA";
 		DuzaLiczba zero(0);
 		output = zero;
 		return output;
 	}
-	// Zak³adam, ¿e zawsze wieksza jest tego samego znaku
 	if (bigger(substractNumber)) {
 		cout << "LICZBA A JEST WIEKSZA   !!!" << endl;
 		for (int i = 0 ; i < substractNumber.mLenght  ; i++) {
@@ -203,8 +168,6 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 			int a = output.wartosc[mLenght - 1 - i] - '0';
 			int c = a - b;
 			output.wartosc[mLenght - 1 - i] = c + '0';
-			cout << "Dzia³anie " << a << " - " << b << endl;
-			cout << "Faza1 : " << c << endl;
 		}
 		for (int i = mLenght - 1 ; i >= 0 ; i--) {
 			
@@ -215,14 +178,12 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 				int b = output.wartosc[i - 1] - '0';
 				b -= 1;
 				output.wartosc[i - 1] = b + '0';
-				
 			}
 		}
 		
 		int k = 0;
 		int a = output.wartosc[k] - '0';
 		while(a == 0) {
-			//Nowy c-string bez pierwszego znaku
 			char* tmp = new char[mLenght];
 			tmp[mLenght - 1] = 0;
 			for (int i = 0; i < mLenght; i++) {
@@ -236,14 +197,10 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 	}else {
 		output = substractNumber.subtract(output).changeSign();
 	}
-
-	cout << "WYNIKA ODEJMOWANIA: " << output.wartosc << endl;
-
 	return output;
 }
 
 DuzaLiczba DuzaLiczba::multiply(const DuzaLiczba &multiplyNumber) const {
-	
 	
 	DuzaLiczba output("0");
 	DuzaLiczba multiper = multiplyNumber;
@@ -254,16 +211,12 @@ DuzaLiczba DuzaLiczba::multiply(const DuzaLiczba &multiplyNumber) const {
 		cout << output << endl;
 		cout << " + " << endl;
 		cout << *this << endl;
-		
+	
 		output = output.add(*this);
 		counter = counter.add(count);
 	}
-
-	cout << "WYNIK MNOZENA: " <<  endl;
-	cout << output << endl;
 	return output;
 }
-
 
 DuzaLiczba DuzaLiczba::divide(const DuzaLiczba &addNumber) const {
 
@@ -273,23 +226,17 @@ DuzaLiczba DuzaLiczba::divide(const DuzaLiczba &addNumber) const {
 	DuzaLiczba divider = addNumber;
 
 	while (divide.bigger(divider)) {
-		cout << "DZIELENIE: " << divide.wartosc << " // " << divider.wartosc << endl;
 		divide = divide.subtract(divider);
 		counter = counter.add(count);
-
 	}
-
-	cout << counter.wartosc << " TO JEST WYNIK" << endl;
 	return counter;
 }
-
 
 DuzaLiczba DuzaLiczba::changeSign() const {
 
 	 DuzaLiczba output = *this;
 
 	if (output.isPositive) {
-		// +2    '-' and 0
 		char *temporary = new char[output.mLenght + 2];
 		temporary[0] = '-';
 		for (int i = 0; i < output.mLenght; i++) {
@@ -301,12 +248,8 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 		output.mLenght = strlen(output.wartosc);
 		output.isPositive = false;
 
-
-		
-
 	}
 	else if(!output.isPositive){
-		// '-' out
 		char *temporary = new char[output.mLenght];
 		for (int i = 1; i < output.mLenght; i++) {
 			temporary[i-1] = output.wartosc[i];
@@ -317,11 +260,7 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 		output.mLenght = strlen(output.wartosc);
 		output.isPositive = true;
 	}
-	cout << "Change SIGN " << output.wartosc << endl;
-	
-	
 	return output;
-
 }
 
 bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
@@ -364,7 +303,6 @@ bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 			}
 		}
 	}
-
 
 bool DuzaLiczba::equal(const DuzaLiczba& compare) const {
 
@@ -452,7 +390,6 @@ DuzaLiczba DuzaLiczba::operator*(const DuzaLiczba& value)  {
 	return output;
 } 
 
-
 DuzaLiczba DuzaLiczba::operator/(const DuzaLiczba& value)  {
 
 	DuzaLiczba output;
@@ -529,7 +466,6 @@ DuzaLiczba & DuzaLiczba::operator*=(const DuzaLiczba& value) {
 		*this = changeSign();
 	}
 
-
 	return *this;
 }
 
@@ -550,9 +486,9 @@ DuzaLiczba & DuzaLiczba::operator/=(const DuzaLiczba& value) {
 		*this = changeSign();
 	}
 
-
 	return *this;
 }
+
 bool operator>=(const DuzaLiczba & a , const DuzaLiczba &b) {
 
 	if (a.bigger(b) || a.equal(b))
@@ -600,9 +536,6 @@ DuzaLiczba operator!(const DuzaLiczba & a) {
 			counter = counter.add(count);
 		}
 	}
-	cout << "WYNIK SILNIA" << output;
 	return output;
-	
-
 
 }
