@@ -32,6 +32,7 @@ DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),length(strlen(number))  {
 	}else {
 		isPositive = true;
 	}
+
 };
 
 DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),length(copy.length),isPositive(copy.isPositive) {
@@ -97,10 +98,10 @@ istream& operator>>(istream& stream, const DuzaLiczba& item) {
 	return stream;
 }
 
-//DuzaLiczba::~DuzaLiczba()
-//{
-//	delete[] wartosc;
-//}
+DuzaLiczba::~DuzaLiczba()
+{
+	delete[] wartosc;
+}
 
 DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 
@@ -539,6 +540,6 @@ DuzaLiczba operator!(const DuzaLiczba & a) {
 
 }
 
-char* DuzaLiczba::Wartosc() {
-	return wartosc;
-}
+//char* DuzaLiczba::Wartosc() {
+//	return wartosc;
+//}

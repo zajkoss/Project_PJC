@@ -141,6 +141,6 @@ bool operator<(const DuzaLiczbaZespolona &a, const DuzaLiczba &b) {
 }
 
 
-char* DuzaLiczbaZespolona::Wartosc() {
-	return this->real->Wartosc();
-}
+//char* DuzaLiczbaZespolona::Wartosc() {
+//	return this->real->Wartosc();
+//}
