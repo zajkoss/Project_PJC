@@ -1,13 +1,14 @@
 #pragma once
 
 #include <iostream>
+#include "Liczba.h"
 using namespace std;
 
-class DuzaLiczba {
+class DuzaLiczba  {
 private: 
 	bool isPositive;
 	char* wartosc;
-	int mLenght;
+	int length;
 
 	bool valid(char* cstr);
 	char* copyString(const char* cstr);
@@ -27,7 +28,7 @@ public:
 	DuzaLiczba(char* number = "0");
 	DuzaLiczba(const DuzaLiczba &copy);
 
-	virtual ~DuzaLiczba();
+	//virtual ~DuzaLiczba();
 	
 	friend istream& operator>>(istream&, const DuzaLiczba&);
 	friend ostream& operator<<(ostream&, const DuzaLiczba&);
@@ -52,7 +53,6 @@ public:
 
 	DuzaLiczba& operator=(const DuzaLiczba& value);
 
-	//TO-PRIVATE
+	virtual char* Wartosc();
 	
-
 };

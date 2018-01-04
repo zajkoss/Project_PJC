@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Liczba.h"
 #include "DuzaLiczba.h"
 #include <iostream>
+
 using namespace std;
 
-class DuzaLiczbaZespolona {
+class DuzaLiczbaZespolona  {
 	DuzaLiczba *real;
 	DuzaLiczba *imagine;
 	DuzaLiczba * minus = new DuzaLiczba("-1");
@@ -14,7 +16,7 @@ public:
 	DuzaLiczbaZespolona(char* = "0", char * = "0");
 	DuzaLiczbaZespolona(const DuzaLiczbaZespolona& copy);
 
-	virtual ~DuzaLiczbaZespolona();
+	//virtual ~DuzaLiczbaZespolona();
 
 	friend istream& operator>>(istream&, const DuzaLiczbaZespolona&);
 	friend ostream& operator<<(ostream&, const DuzaLiczbaZespolona&);
@@ -36,5 +38,7 @@ public:
 	friend bool operator==(const DuzaLiczbaZespolona &a, const DuzaLiczbaZespolona &b);
 	friend bool operator>=(const DuzaLiczbaZespolona &a, const DuzaLiczba &b);
 	friend bool operator<(const DuzaLiczbaZespolona &a, const DuzaLiczba &b);
+
+	virtual char* Wartosc();
 
 };

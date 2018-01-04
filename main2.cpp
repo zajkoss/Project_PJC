@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "DuzaLiczba.h" 
 #include "DuzaLiczbaZespolona.h" 
+#include "ListaDuzychLiczb.h"
 
 
 int main() {
@@ -50,8 +51,8 @@ int main() {
 
 	//MAJNE TESTY
 	//DuzaLiczbaZespolona p1(2, 2);
-	DuzaLiczba*l7 = new DuzaLiczba("-172839023498234792834798237494");
-	delete l7;
+	//DuzaLiczba*l7 = new DuzaLiczba("-172839023498234792834798237494");
+	//delete l7;
 	//DuzaLiczbaZespolona p3;
 	
 	//if (p1 < "2") {
@@ -101,6 +102,15 @@ int main() {
 		cout << "ok";
 	}
 	*/
+
+	DuzaLiczba p = DuzaLiczba("11111112");
+	cout << p << endl;
+
+
+	//=====================================================
+	/*ListaDuzychLiczb *lista = new ListaDuzychLiczb();
+	lista->wstawNaPoczatek(new DuzaLiczba("9129081391"));
+	cout << lista;*/
 	system("pause");
 	return 0; 
 }
