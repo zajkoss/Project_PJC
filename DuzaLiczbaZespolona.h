@@ -37,4 +37,5 @@ public:
 	friend bool operator>=(const DuzaLiczbaZespolona &a, const DuzaLiczba &b);
 	friend bool operator<(const DuzaLiczbaZespolona &a, const DuzaLiczba &b);
 
+	virtual char* Wartosc();
 };

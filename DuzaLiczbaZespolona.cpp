@@ -142,3 +142,7 @@ bool operator<(const DuzaLiczbaZespolona &a, const DuzaLiczba &b) {
 	else
 		return false;
 }
+
+char* DuzaLiczbaZespolona::Wartosc() {
+	return this->real->Wartosc();
+}
