@@ -1,2 +1,4 @@
-﻿DuzaLiczbaZespolona.obj : error LNK2001: nierozpoznany symbol zewnętrzny "public: virtual char * __thiscall DuzaLiczbaZespolona::Wartosc(void)" (?Wartosc@DuzaLiczbaZespolona@@UAEPADXZ)
-D:\PROJEKTY\VISUAL STUDI\PJC\Project_PJC\Debug\Project_PJC.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 1
+﻿  DuzaLiczba.cpp
+d:\projekty\visual studi\pjc\project_pjc\project_pjc\duzaliczba.cpp(306): warning C4715: "DuzaLiczba::bigger”: niewszystkie ścieżki kodu zwracają wartość
+  Project_PJC.vcxproj -> D:\PROJEKTY\VISUAL STUDI\PJC\Project_PJC\Debug\Project_PJC.exe
+  Project_PJC.vcxproj -> D:\PROJEKTY\VISUAL STUDI\PJC\Project_PJC\Debug\Project_PJC.pdb (Partial PDB)

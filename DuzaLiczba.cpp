@@ -98,10 +98,10 @@ istream& operator>>(istream& stream, const DuzaLiczba& item) {
 	return stream;
 }
 
-DuzaLiczba::~DuzaLiczba()
-{
-	delete[] wartosc;
-}
+//DuzaLiczba::~DuzaLiczba()
+//{
+//	delete[] wartosc;
+//}
 
 DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 
@@ -539,12 +539,6 @@ DuzaLiczba operator!(const DuzaLiczba & a) {
 	}
 	return output;
 
-<<<<<<< HEAD
+
 }
 
-//char* DuzaLiczba::Wartosc() {
-//	return wartosc;
-//}
-=======
-}
->>>>>>> parent of bba746f... problem part3

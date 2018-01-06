@@ -27,7 +27,7 @@ public:
 	DuzaLiczba(char* number = "0");
 	DuzaLiczba(const DuzaLiczba &copy);
 
-	virtual ~DuzaLiczba();
+	//virtual ~DuzaLiczba();
 	
 	friend istream& operator>>(istream&, const DuzaLiczba&);
 	friend ostream& operator<<(ostream&, const DuzaLiczba&);
@@ -52,11 +52,6 @@ public:
 
 	DuzaLiczba& operator=(const DuzaLiczba& value);
 
-<<<<<<< HEAD
-	//virtual char* Wartosc();
-=======
-	//TO-PRIVATE
->>>>>>> parent of bba746f... problem part3
-	
+
 
 };

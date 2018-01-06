@@ -24,12 +24,7 @@ DuzaLiczbaZespolona::DuzaLiczbaZespolona(const DuzaLiczbaZespolona& copy) {
 	cout << "KONSTRUKTOR COPY " << *(this->real) << " " << *(this->imagine) << endl;
 }
 
-DuzaLiczba::~DuzaLiczba()
-{
-	cout << "DESTRUKTOR LICZBA ZES" << endl;
-	//delete[] real;
-	//delete[] image;
-}
+
 
 
 ostream& operator<<(ostream& stream, const DuzaLiczbaZespolona& item) {
@@ -147,11 +142,3 @@ bool operator<(const DuzaLiczbaZespolona &a, const DuzaLiczba &b) {
 	else
 		return false;
 }
-<<<<<<< HEAD
-
-
-//char* DuzaLiczbaZespolona::Wartosc() {
-//	return this->real->Wartosc();
-//}
-=======
->>>>>>> parent of bba746f... problem part3
