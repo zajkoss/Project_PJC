@@ -13,7 +13,7 @@ DuzaLiczba::DuzaLiczba(int number) {
 	char const* tmp_number = s.c_str();
 	wartosc = copyString(tmp_number);
 	
-	length = strlen(wartosc);
+	mLenght = strlen(wartosc);
 	
 	if(wartosc[0] == '-'){
 		isPositive = false;
@@ -22,10 +22,10 @@ DuzaLiczba::DuzaLiczba(int number) {
 	}
 };
 
-DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),length(strlen(number))  {	
+DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),mLenght(strlen(number))  {	
 
 	wartosc = deleteSpaces(wartosc);
-	length = strlen(wartosc);	
+	mLenght = strlen(wartosc);	
 
 	if (wartosc[0] == '-') {
 		isPositive = false;
@@ -35,7 +35,7 @@ DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),length(strlen(number))  {
 
 };
 
-DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),length(copy.length),isPositive(copy.isPositive) {
+DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),mLenght(copy.mLenght),isPositive(copy.isPositive) {
 }
 
 bool DuzaLiczba::valid(char* cstr) {
@@ -70,7 +70,7 @@ char* DuzaLiczba::copyString(const char* cstr) {
 char* DuzaLiczba::deleteSpaces(char* cstr) {
 
 	int length = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < mLenght; i++) {
 		if (cstr[i] != ' ') {
 			length++;
 		}
@@ -79,7 +79,7 @@ char* DuzaLiczba::deleteSpaces(char* cstr) {
 	char* output = new char[length+1];
 
 	int k = 0;
-	for (int i = 0; i < length; i++) {
+	for (int i = 0; i < mLenght; i++) {
 		if (cstr[i] != ' ') {
 			output[k++] = cstr[i];
 		}
@@ -108,26 +108,26 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 	DuzaLiczba longerNum;
 	DuzaLiczba shorterNum;
 
-	if (this->length >= addNumber.length) {
+	if (this->mLenght >= addNumber.mLenght) {
 		 longerNum = *this;
 		 shorterNum = addNumber;
 	}
-	else  if (this->length < addNumber.length) {
+	else  if (this->mLenght < addNumber.mLenght) {
 		 longerNum = addNumber;
 		 shorterNum = *this;
 	}
 
-	for (int i = 0; i < shorterNum.length; i++) {
+	for (int i = 0; i < shorterNum.mLenght; i++) {
 
-		int a = shorterNum.wartosc[shorterNum.length - 1 - i] - '0';
-		int b = longerNum.wartosc[longerNum.length - 1 - i] - '0';
+		int a = shorterNum.wartosc[shorterNum.mLenght - 1 - i] - '0';
+		int b = longerNum.wartosc[longerNum.mLenght - 1 - i] - '0';
 		int c = a + b;
-		cout << " 1 " <<  wartosc[longerNum.length - 1 - i] <<  endl;
-		longerNum.wartosc[longerNum.length - 1 - i] = c + '0';
-		cout << " 2 " << wartosc[longerNum.length - 1 - i] << endl;
+		cout << " 1 " <<  wartosc[longerNum.mLenght - 1 - i] <<  endl;
+		longerNum.wartosc[longerNum.mLenght - 1 - i] = c + '0';
+		cout << " 2 " << wartosc[longerNum.mLenght - 1 - i] << endl;
 	}
 
-	for (int i = longerNum.length - 1; i >= 0; i--) {
+	for (int i = longerNum.mLenght - 1; i >= 0; i--) {
 	
 		int a = longerNum.wartosc[i] - '0';
 		if (a >= 10 && i != 0) {
@@ -138,16 +138,16 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 			longerNum.wartosc[i - 1] = b + '0';
 
 		} else if (a >= 10 && i == 0) {
-			char* tmp = new char[longerNum.length + 2];
+			char* tmp = new char[longerNum.mLenght + 2];
 			tmp[0] = 1 + '0';
-			tmp[longerNum.length + 2 - 1] = 0;
+			tmp[longerNum.mLenght + 2 - 1] = 0;
 			a -= 10;
 			longerNum.wartosc[i] = a + '0';
-			for (int i = 0; i <= longerNum.length; i++) {
+			for (int i = 0; i <= longerNum.mLenght; i++) {
 				tmp[i + 1] = longerNum.wartosc[i];
 			}
 			longerNum.wartosc = tmp;
-			longerNum.length = longerNum.length + 1;
+			longerNum.mLenght = longerNum.mLenght + 1;
 		}
 	}
 	return longerNum;
@@ -164,13 +164,13 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 	}
 	if (bigger(substractNumber)) {
 		cout << "LICZBA A JEST WIEKSZA   !!!" << endl;
-		for (int i = 0 ; i < substractNumber.length  ; i++) {
-			int b = substractNumber.wartosc[substractNumber.length - 1 - i] - '0';
-			int a = output.wartosc[length - 1 - i] - '0';
+		for (int i = 0 ; i < substractNumber.mLenght  ; i++) {
+			int b = substractNumber.wartosc[substractNumber.mLenght - 1 - i] - '0';
+			int a = output.wartosc[mLenght - 1 - i] - '0';
 			int c = a - b;
-			output.wartosc[length - 1 - i] = c + '0';
+			output.wartosc[mLenght - 1 - i] = c + '0';
 		}
-		for (int i = length - 1 ; i >= 0 ; i--) {
+		for (int i = mLenght - 1 ; i >= 0 ; i--) {
 			
 			int a = output.wartosc[i] - '0';
 			if (a < 0 ) {
@@ -185,14 +185,14 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 		int k = 0;
 		int a = output.wartosc[k] - '0';
 		while(a == 0) {
-			char* tmp = new char[length];
-			tmp[length - 1] = 0;
-			for (int i = 0; i < length; i++) {
+			char* tmp = new char[mLenght];
+			tmp[mLenght - 1] = 0;
+			for (int i = 0; i < mLenght; i++) {
 				tmp[i] = output.wartosc[i + 1];
 			}
 			//delete[]output.mNumber;
 			output.wartosc = tmp;
-			output.length = output.length - 1;
+			output.mLenght = output.mLenght - 1;
 			a = output.wartosc[k++] - '0';
 		}
 	}else {
@@ -238,27 +238,27 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 	 DuzaLiczba output = *this;
 
 	if (output.isPositive) {
-		char *temporary = new char[output.length + 2];
+		char *temporary = new char[output.mLenght + 2];
 		temporary[0] = '-';
-		for (int i = 0; i < output.length; i++) {
+		for (int i = 0; i < output.mLenght; i++) {
 			temporary[i + 1] = output.wartosc[i];
 		}
-		temporary[output.length + 2 - 1] = 0;
+		temporary[output.mLenght + 2 - 1] = 0;
 		//delete[] output.mNumber;
 		output.wartosc = temporary;
-		output.length = strlen(output.wartosc);
+		output.mLenght = strlen(output.wartosc);
 		output.isPositive = false;
 
 	}
 	else if(!output.isPositive){
-		char *temporary = new char[output.length];
-		for (int i = 1; i < output.length; i++) {
+		char *temporary = new char[output.mLenght];
+		for (int i = 1; i < output.mLenght; i++) {
 			temporary[i-1] = output.wartosc[i];
 		}
-		temporary[output.length - 1] = 0;
+		temporary[output.mLenght - 1] = 0;
 		//delete[] output.mNumber;
 		output.wartosc = temporary;
-		output.length = strlen(output.wartosc);
+		output.mLenght = strlen(output.wartosc);
 		output.isPositive = true;
 	}
 	return output;
@@ -274,12 +274,12 @@ bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 
 	//Dodatnie
 	if (isPositive && compare.isPositive) {
-		if (length > compare.length)
+		if (mLenght > compare.mLenght)
 			return true;
-		else if (length < compare.length)
+		else if (mLenght < compare.mLenght)
 			return false;
-		else if (length == compare.length) {
-			for (int i = 0; i < length; i++) {
+		else if (mLenght == compare.mLenght) {
+			for (int i = 0; i < mLenght; i++) {
 				if (wartosc[i] > compare.wartosc[i])
 					return true;
 				else if (wartosc[i] < compare.wartosc[i])
@@ -290,12 +290,12 @@ bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 
 		//Ujemne
 		if (!isPositive && !compare.isPositive) {
-			if (length > compare.length)
+			if (mLenght > compare.mLenght)
 				return false;
-			else if (length < compare.length)
+			else if (mLenght < compare.mLenght)
 				return true;
-			else if (length == compare.length) {
-				for (int i = 1; i < length; i++) {
+			else if (mLenght == compare.mLenght) {
+				for (int i = 1; i < mLenght; i++) {
 					if (wartosc[i] > compare.wartosc[i])
 						return false;
 					else if (wartosc[i] < compare.wartosc[i])
@@ -308,7 +308,7 @@ bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 bool DuzaLiczba::equal(const DuzaLiczba& compare) const {
 
 	if ((isPositive && compare.isPositive) || (!isPositive && !compare.isPositive)) {
-		for (int i = 0; i < length; i++) {
+		for (int i = 0; i < mLenght; i++) {
 			if (wartosc[i] != compare.wartosc[i])
 				return false;
 		}
@@ -320,6 +320,7 @@ bool DuzaLiczba::equal(const DuzaLiczba& compare) const {
 
 }
 
+//========= OPERATORY =============
 DuzaLiczba DuzaLiczba::operator+(const DuzaLiczba& value)  {
 
 	DuzaLiczba output;
@@ -341,7 +342,7 @@ DuzaLiczba DuzaLiczba::operator+(const DuzaLiczba& value)  {
 DuzaLiczba& DuzaLiczba::operator=(const DuzaLiczba& value) {
 	
 	wartosc = copyString(value.wartosc);
-	length = value.length;
+	mLenght = value.mLenght;
 	isPositive = value.isPositive;
 
 	return *this;
@@ -538,8 +539,12 @@ DuzaLiczba operator!(const DuzaLiczba & a) {
 	}
 	return output;
 
+<<<<<<< HEAD
 }
 
 //char* DuzaLiczba::Wartosc() {
 //	return wartosc;
 //}
+=======
+}
+>>>>>>> parent of bba746f... problem part3

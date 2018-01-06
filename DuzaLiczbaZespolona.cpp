@@ -8,24 +8,28 @@ using namespace std;
 DuzaLiczbaZespolona::DuzaLiczbaZespolona(int r, int img) {
 	real = new DuzaLiczba(r);
 	imagine = new DuzaLiczba(img);
+	cout << "KONSTRUKTOR INT " << *(this->real) << " "  << *(this->imagine) << endl;
+	
 }
 
 DuzaLiczbaZespolona::DuzaLiczbaZespolona(char* real, char * img ) {
 	this->real = new DuzaLiczba(real);
 	this->imagine = new DuzaLiczba(img);
-
+	cout << "KONSTRUKTOR CHAR " << *(this->real) << " " << *(this->imagine) << endl;
 }
 
 DuzaLiczbaZespolona::DuzaLiczbaZespolona(const DuzaLiczbaZespolona& copy) {
 	this->real = copy.real;
 	this->imagine = copy.imagine;
+	cout << "KONSTRUKTOR COPY " << *(this->real) << " " << *(this->imagine) << endl;
 }
 
-//DuzaLiczba::~DuzaLiczba()
-//{
-//	//delete this.real;
-//	//delete *image;
-//}
+DuzaLiczba::~DuzaLiczba()
+{
+	cout << "DESTRUKTOR LICZBA ZES" << endl;
+	//delete[] real;
+	//delete[] image;
+}
 
 
 ostream& operator<<(ostream& stream, const DuzaLiczbaZespolona& item) {
@@ -98,18 +102,21 @@ DuzaLiczbaZespolona & DuzaLiczbaZespolona::operator-=(const DuzaLiczbaZespolona&
 	this->imagine = new DuzaLiczba(*(this->imagine) - (*(value.imagine)));
 	this->real = new DuzaLiczba(*(this->real) - (*(value.real)));
 	return *this;
+
 }
 
 DuzaLiczbaZespolona & DuzaLiczbaZespolona::operator*=(const DuzaLiczbaZespolona& value) {
 	this->real = new DuzaLiczba((*(this->real) * (*(value.real))) - (*this->imagine) * (*(value.imagine)));
 	this->imagine = new DuzaLiczba(((*this->imagine)*(*(value.real))) + (*(this->real) * (*(value.imagine))));
 	return *this;
+
 }
 
 DuzaLiczbaZespolona & DuzaLiczbaZespolona::operator/=(const DuzaLiczbaZespolona& value) {
 	this->real = new DuzaLiczba((((*(this->real)) * (*(value.real))) + ((*(this->imagine))*(*(value.imagine)))) / (((*(value.real))*(*(value.real))) + ((*(value.imagine))*(*(value.imagine)))));
 	this->imagine = new DuzaLiczba((((*(this->imagine))*(*(value.real))) - ((*(this->real))* (*(value.imagine)))) / (((*(value.real))*(*(value.real))) + ((*(value.imagine))*(*(value.imagine)))));
 	return *this;
+
 }
 
 bool operator==(const DuzaLiczbaZespolona &a, const DuzaLiczbaZespolona &b){
@@ -117,6 +124,7 @@ bool operator==(const DuzaLiczbaZespolona &a, const DuzaLiczbaZespolona &b){
 		return true;
 	else
 		return false;
+
 }
 
 bool operator!=(const DuzaLiczbaZespolona &a, const DuzaLiczbaZespolona &b) {
@@ -139,8 +147,11 @@ bool operator<(const DuzaLiczbaZespolona &a, const DuzaLiczba &b) {
 	else
 		return false;
 }
+<<<<<<< HEAD
 
 
 //char* DuzaLiczbaZespolona::Wartosc() {
 //	return this->real->Wartosc();
 //}
+=======
+>>>>>>> parent of bba746f... problem part3

@@ -1,14 +1,13 @@
 #pragma once
 
 #include <iostream>
-#include "Liczba.h"
 using namespace std;
 
-class DuzaLiczba  {
+class DuzaLiczba {
 private: 
 	bool isPositive;
 	char* wartosc;
-	int length;
+	int mLenght;
 
 	bool valid(char* cstr);
 	char* copyString(const char* cstr);
@@ -53,6 +52,11 @@ public:
 
 	DuzaLiczba& operator=(const DuzaLiczba& value);
 
+<<<<<<< HEAD
 	//virtual char* Wartosc();
+=======
+	//TO-PRIVATE
+>>>>>>> parent of bba746f... problem part3
 	
+
 };

@@ -147,12 +147,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DuzaLiczba.h" />
+    <ClInclude Include="DuzaLiczbaZespolona.h" />
+    <ClInclude Include="ElementListy.h" />
+    <ClInclude Include="Liczba.h" />
+    <ClInclude Include="ListaDuzychLiczb.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DuzaLiczba.cpp" />
+    <ClCompile Include="DuzaLiczbaZespolona.cpp" />
+    <ClCompile Include="ElementListy.cpp" />
+    <ClCompile Include="Liczba.cpp" />
+    <ClCompile Include="ListaDuzychLiczba.cpp" />
     <ClCompile Include="main1.cpp" />
+    <ClCompile Include="main2.cpp" />
     <ClCompile Include="ProjectPJC.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
