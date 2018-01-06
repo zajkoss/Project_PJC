@@ -14,4 +14,5 @@ public:
 	void ustawNastepnyElement(ElementListy *);
 	void ustawPoprzedniElement(ElementListy *);
 
+	char* wezLiczbe();
 };
