@@ -1,9 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include "Liczba.h"
 using namespace std;
 
-class DuzaLiczba {
+class DuzaLiczba : public Liczba {
 private: 
 	bool isPositive;
 	char* wartosc;

@@ -1,10 +1,11 @@
 #pragma once
 
 #include "DuzaLiczba.h"
+#include "Liczba.h"
 #include <iostream>
 using namespace std;
 
-class DuzaLiczbaZespolona {
+class DuzaLiczbaZespolona : public Liczba{
 	DuzaLiczba *real;
 	DuzaLiczba *imagine;
 	DuzaLiczba * minus = new DuzaLiczba("-1");
