@@ -52,6 +52,7 @@ public:
 
 	DuzaLiczba& operator=(const DuzaLiczba& value);
 
+	virtual char* Wartosc();
 
 
 };

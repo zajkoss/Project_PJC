@@ -538,7 +538,9 @@ DuzaLiczba operator!(const DuzaLiczba & a) {
 		}
 	}
 	return output;
+}
 
-
+char* DuzaLiczba::Wartosc() {
+	return this->wartosc;
 }
 
