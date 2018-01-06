@@ -8,5 +8,10 @@ class ElementListy {
 public:
 	ElementListy(Liczba *);
 
+	ElementListy* wezNastepnyElement();
+	ElementListy* wezPoprzedniElement();
+
+	void ustawNastepnyElement(ElementListy *);
+	void ustawPoprzedniElement(ElementListy *);
 
 };
