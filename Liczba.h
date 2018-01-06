@@ -5,5 +5,8 @@ class Liczba {
 
 public:
 
+	Liczba();
+
+	virtual char* Wartosc() = 0;
 
 };
