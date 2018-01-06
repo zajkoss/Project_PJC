@@ -6,6 +6,6 @@ class ListaDuzychLiczb {
 	ElementListy *ostatni;
 	unsigned int rozmiar;
 public:
-
+	ListaDuzychLiczb();
 
 };
