@@ -6,7 +6,7 @@ using namespace std;
 
 class DuzaLiczba : public Liczba {
 private: 
-	bool isPositive;
+	bool dodatnia;
 	char* wartosc;
 	int mLenght;
 
@@ -14,7 +14,6 @@ private:
 	char* copyString(const char* cstr);
 	char* deleteSpaces(char* cstr);
 	
-
 	DuzaLiczba add(const DuzaLiczba &addNumber) const;
 	DuzaLiczba subtract(const DuzaLiczba &addNumber) const;
 	DuzaLiczba multiply(const DuzaLiczba &addNumber) const;
@@ -43,7 +42,6 @@ public:
 	DuzaLiczba & operator*=(const DuzaLiczba& value);
 	DuzaLiczba & operator/=(const DuzaLiczba& value);
 
-
 	friend bool operator!=(const DuzaLiczba &a, const DuzaLiczba &b);
 	friend bool operator==(const DuzaLiczba &a , const DuzaLiczba &b);
 	friend bool operator>=(const DuzaLiczba &a , const DuzaLiczba &b);
@@ -54,6 +52,4 @@ public:
 	DuzaLiczba& operator=(const DuzaLiczba& value);
 
 	virtual char* Wartosc();
-
-
 };

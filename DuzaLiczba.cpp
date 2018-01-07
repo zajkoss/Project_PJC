@@ -16,9 +16,9 @@ DuzaLiczba::DuzaLiczba(int number) {
 	mLenght = strlen(wartosc);
 	
 	if(wartosc[0] == '-'){
-		isPositive = false;
+		dodatnia = false;
 	} else {
-		isPositive = true;
+		dodatnia = true;
 	}
 }
 
@@ -32,14 +32,14 @@ DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),mLenght(strlen(number))  
 	mLenght = strlen(wartosc);	
 
 	if (wartosc[0] == '-') {
-		isPositive = false;
+		dodatnia = false;
 	}else {
-		isPositive = true;
+		dodatnia = true;
 	}
 
 };
 
-DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),mLenght(copy.mLenght),isPositive(copy.isPositive) {
+DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),mLenght(copy.mLenght),dodatnia(copy.dodatnia) {
 }
 
 bool DuzaLiczba::valid(char* cstr) {
@@ -241,7 +241,7 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 
 	 DuzaLiczba output = *this;
 
-	if (output.isPositive) {
+	if (output.dodatnia) {
 		char *temporary = new char[output.mLenght + 2];
 		temporary[0] = '-';
 		for (int i = 0; i < output.mLenght; i++) {
@@ -251,10 +251,10 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 		//delete[] output.mNumber;
 		output.wartosc = temporary;
 		output.mLenght = strlen(output.wartosc);
-		output.isPositive = false;
+		output.dodatnia = false;
 
 	}
-	else if(!output.isPositive){
+	else if(!output.dodatnia){
 		char *temporary = new char[output.mLenght];
 		for (int i = 1; i < output.mLenght; i++) {
 			temporary[i-1] = output.wartosc[i];
@@ -263,7 +263,7 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 		//delete[] output.mNumber;
 		output.wartosc = temporary;
 		output.mLenght = strlen(output.wartosc);
-		output.isPositive = true;
+		output.dodatnia = true;
 	}
 	return output;
 }
@@ -271,13 +271,13 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 
 	// Dodatnia , ujemna
-	if (isPositive && !compare.isPositive)
+	if (dodatnia && !compare.dodatnia)
 		return true;
-	else if (!isPositive && compare.isPositive)
+	else if (!dodatnia && compare.dodatnia)
 		return false;
 
 	//Dodatnie
-	if (isPositive && compare.isPositive) {
+	if (dodatnia && compare.dodatnia) {
 		if (mLenght > compare.mLenght)
 			return true;
 		else if (mLenght < compare.mLenght)
@@ -293,7 +293,7 @@ bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 	}
 
 		//Ujemne
-		if (!isPositive && !compare.isPositive) {
+		if (!dodatnia && !compare.dodatnia) {
 			if (mLenght > compare.mLenght)
 				return false;
 			else if (mLenght < compare.mLenght)
@@ -311,7 +311,7 @@ bool DuzaLiczba::bigger(const DuzaLiczba& compare) const {
 
 bool DuzaLiczba::equal(const DuzaLiczba& compare) const {
 
-	if ((isPositive && compare.isPositive) || (!isPositive && !compare.isPositive)) {
+	if ((dodatnia && compare.dodatnia) || (!dodatnia && !compare.dodatnia)) {
 		for (int i = 0; i < mLenght; i++) {
 			if (wartosc[i] != compare.wartosc[i])
 				return false;
@@ -329,15 +329,15 @@ DuzaLiczba DuzaLiczba::operator+(const DuzaLiczba& value)  {
 
 	DuzaLiczba output;
 
-	if (this->isPositive && value.isPositive)
+	if (this->dodatnia && value.dodatnia)
 		output = add(value);
-	else if (this->isPositive && !value.isPositive) {
+	else if (this->dodatnia && !value.dodatnia) {
 		output = subtract(value.changeSign());
 	}
-	else if (!this->isPositive && value.isPositive) {
+	else if (!this->dodatnia && value.dodatnia) {
 		output = value.subtract(changeSign());
 	}
-	else if (!this->isPositive && !value.isPositive) {
+	else if (!this->dodatnia && !value.dodatnia) {
 		output = changeSign().add(value.changeSign());
 	}
 	return output;
@@ -347,7 +347,7 @@ DuzaLiczba& DuzaLiczba::operator=(const DuzaLiczba& value) {
 	
 	wartosc = copyString(value.wartosc);
 	mLenght = value.mLenght;
-	isPositive = value.isPositive;
+	dodatnia = value.dodatnia;
 
 	return *this;
 }
@@ -356,16 +356,16 @@ DuzaLiczba DuzaLiczba::operator-(const DuzaLiczba& value)  {
 
 	DuzaLiczba output;
 
-	if (this->isPositive && value.isPositive)
+	if (this->dodatnia && value.dodatnia)
 		output = subtract(value);
-	else if (this->isPositive && !value.isPositive) {
+	else if (this->dodatnia && !value.dodatnia) {
 		output = add(value.changeSign());
 	}
-	else if (!this->isPositive && value.isPositive) {
+	else if (!this->dodatnia && value.dodatnia) {
 		output = changeSign().add(value);
 		output = output.changeSign();
 	}
-	else if (!this->isPositive && !value.isPositive) {
+	else if (!this->dodatnia && !value.dodatnia) {
 		output = value.changeSign().subtract(changeSign());
 	}
 	return output;
@@ -376,17 +376,17 @@ DuzaLiczba DuzaLiczba::operator*(const DuzaLiczba& value)  {
 	
 	DuzaLiczba output;
 
-	if (isPositive && value.isPositive) {
+	if (dodatnia && value.dodatnia) {
 		output = multiply(value);
 	}
-	else if (!isPositive && !value.isPositive) {
+	else if (!dodatnia && !value.dodatnia) {
 		output = changeSign().multiply(value.changeSign());
 	}
-	else if (!isPositive && value.isPositive) {
+	else if (!dodatnia && value.dodatnia) {
 		output = changeSign().multiply(value);
 		output = output.changeSign();
 	}
-	else if (isPositive && !value.isPositive) {
+	else if (dodatnia && !value.dodatnia) {
 		output = multiply(value.changeSign());
 		output = output.changeSign();
 	}
@@ -399,17 +399,17 @@ DuzaLiczba DuzaLiczba::operator/(const DuzaLiczba& value)  {
 
 	DuzaLiczba output;
 
-	if (isPositive && value.isPositive) {
+	if (dodatnia && value.dodatnia) {
 		output = divide(value);
 	}
-	else if (!isPositive && !value.isPositive) {
+	else if (!dodatnia && !value.dodatnia) {
 		output = changeSign().divide(value.changeSign());
 	}
-	else if (!isPositive && value.isPositive) {
+	else if (!dodatnia && value.dodatnia) {
 		output = changeSign().divide(value);
 		output = output.changeSign();
 	}
-	else if (isPositive && !value.isPositive) {
+	else if (dodatnia && !value.dodatnia) {
 		output = divide(value.changeSign());
 		output = output.changeSign();
 	}
@@ -421,15 +421,15 @@ DuzaLiczba DuzaLiczba::operator/(const DuzaLiczba& value)  {
 DuzaLiczba & DuzaLiczba::operator+=(const DuzaLiczba& value) {
 	
 
-	if (this->isPositive && value.isPositive)
+	if (this->dodatnia && value.dodatnia)
 		*this = add(value);
-	else if (this->isPositive && !value.isPositive) {
+	else if (this->dodatnia && !value.dodatnia) {
 		*this = subtract(value.changeSign());
 	}
-	else if (!this->isPositive && value.isPositive) {
+	else if (!this->dodatnia && value.dodatnia) {
 		*this = value.subtract(changeSign());
 	}
-	else if (!this->isPositive && !value.isPositive) {
+	else if (!this->dodatnia && !value.dodatnia) {
 		*this = changeSign().add(value.changeSign());
 	}
 	return *this;
@@ -438,16 +438,16 @@ DuzaLiczba & DuzaLiczba::operator+=(const DuzaLiczba& value) {
 
 DuzaLiczba & DuzaLiczba::operator-=(const DuzaLiczba& value) {
 
-	if (this->isPositive && value.isPositive)
+	if (this->dodatnia && value.dodatnia)
 		*this = subtract(value);
-	else if (this->isPositive && !value.isPositive) {
+	else if (this->dodatnia && !value.dodatnia) {
 		*this = add(value.changeSign());
 	}
-	else if (!this->isPositive && value.isPositive) {
+	else if (!this->dodatnia && value.dodatnia) {
 		*this = changeSign().add(value);
 		*this = changeSign();
 	}
-	else if (!this->isPositive && !value.isPositive) {
+	else if (!this->dodatnia && !value.dodatnia) {
 		*this = value.changeSign().subtract(changeSign());
 	}
 	return *this;
@@ -456,17 +456,17 @@ DuzaLiczba & DuzaLiczba::operator-=(const DuzaLiczba& value) {
 
 DuzaLiczba & DuzaLiczba::operator*=(const DuzaLiczba& value) {
 	
-	if (isPositive && value.isPositive) {
+	if (dodatnia && value.dodatnia) {
 		*this = multiply(value);
 	}
-	else if (!isPositive && !value.isPositive) {
+	else if (!dodatnia && !value.dodatnia) {
 		*this = changeSign().multiply(value.changeSign());
 	}
-	else if (!isPositive && value.isPositive) {
+	else if (!dodatnia && value.dodatnia) {
 		*this = changeSign().multiply(value);
 		*this = changeSign();
 	}
-	else if (isPositive && !value.isPositive) {
+	else if (dodatnia && !value.dodatnia) {
 		*this = multiply(value.changeSign());
 		*this = changeSign();
 	}
@@ -476,17 +476,17 @@ DuzaLiczba & DuzaLiczba::operator*=(const DuzaLiczba& value) {
 
 DuzaLiczba & DuzaLiczba::operator/=(const DuzaLiczba& value) {
 
-	if (isPositive && value.isPositive) {
+	if (dodatnia && value.dodatnia) {
 		*this = divide(value);
 	}
-	else if (!isPositive && !value.isPositive) {
+	else if (!dodatnia && !value.dodatnia) {
 		*this = changeSign().divide(value.changeSign());
 	}
-	else if (!isPositive && value.isPositive) {
+	else if (!dodatnia && value.dodatnia) {
 		*this = changeSign().divide(value);
 	    *this = changeSign();
 	}
-	else if (isPositive && !value.isPositive) {
+	else if (dodatnia && !value.dodatnia) {
 		*this = divide(value.changeSign());
 		*this = changeSign();
 	}
@@ -529,7 +529,7 @@ DuzaLiczba operator!(const DuzaLiczba & a) {
 
 	// n >= 1
 	DuzaLiczba zero(0);
-	if (!a.isPositive || a.equal(zero)) {
+	if (!a.dodatnia || a.equal(zero)) {
 		output = zero;
 	}
 	else {
