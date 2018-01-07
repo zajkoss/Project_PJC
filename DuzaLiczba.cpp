@@ -20,7 +20,11 @@ DuzaLiczba::DuzaLiczba(int number) {
 	} else {
 		isPositive = true;
 	}
-};
+}
+
+DuzaLiczba::~DuzaLiczba() {
+	delete[] wartosc;
+}
 
 DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),mLenght(strlen(number))  {	
 
