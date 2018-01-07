@@ -8,6 +8,7 @@ class ListaDuzychLiczb {
 	ElementListy *pierwszy;
 	ElementListy *ostatni;
 	int rozmiar;
+	static bool porownajLiczby(char*, char*);
 
 public:
 	ListaDuzychLiczb();
@@ -24,7 +25,6 @@ public:
 	void usunWszystkieElementy();
 
 	void sortuj();
-	bool porownajLiczby(char*, char*);
 
 	friend ostream& operator<<(ostream&, const ListaDuzychLiczb&);
 };

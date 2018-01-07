@@ -3,7 +3,6 @@
 #include <iostream>
 
 ElementListy::ElementListy(Liczba  *value) : liczba(value){
-	//cout << "Konstruktor element listy" << endl;
 }
 
 ElementListy* ElementListy::wezNastepnyElement() {

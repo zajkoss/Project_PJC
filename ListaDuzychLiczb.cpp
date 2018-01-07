@@ -13,27 +13,17 @@ void ListaDuzychLiczb::wstawNaPoczatek(Liczba * liczba) {
 
 	if (!pierwszy){
 	pierwszy = element;
-	cout << "Dodano na 1" << endl;
-	cout << pierwszy->wezLiczbe() << endl;
 	}else {
-		cout << "Wchodze przestawic" << endl;
 		ElementListy *tmp;
 		tmp = pierwszy;
 		pierwszy = element;
 		tmp->ustawPoprzedniElement(pierwszy);
 		pierwszy->ustawNastepnyElement(tmp);
-		cout << "Dodano na 1" << endl;
-		cout << pierwszy->wezLiczbe() << endl;
-		cout << "Dodano na 2" << endl;
-		cout << tmp->wezLiczbe() << endl;
 	}
-
-	if (!ostatni){
+	if (!ostatni) {
 		ostatni = element;
-		cout << "Dodano na ostatnia" << endl;
-		cout <<ostatni->wezLiczbe() << endl;
+
 	}
-	cout << "Wychodze z ustawNaPoczatek" << endl;
 	rozmiar++;
 }
 
@@ -42,28 +32,18 @@ void ListaDuzychLiczb::wstawNaKoniec(Liczba * liczba) {
 
 	if (!ostatni) {
 		ostatni = element;
-		cout << "Dodano na ostatnia" << endl;
-		cout << ostatni->wezLiczbe() << endl;
 	}
 	else {
-		cout << "Wchodze przestawic" << endl;
 		ElementListy *tmp;
 		tmp = ostatni;
 		ostatni = element;
 		ostatni->ustawNastepnyElement(0);
 		tmp->ustawNastepnyElement(ostatni);
 		ostatni->ustawPoprzedniElement(tmp);
-		cout << "Dodano na ostatnia" << endl;
-		cout << ostatni->wezLiczbe() << endl;
-		cout << "Dodano na przedostatnia" << endl;
-		cout << tmp->wezLiczbe() << endl;
 	}
 	if (!pierwszy) {
 		pierwszy = element;
-		cout << "Dodano na 1" << endl;
-		cout << pierwszy->wezLiczbe() << endl;
 	}
-	cout << "Wychodze z ustawNaKoniec" << endl;
 	rozmiar++;
 }
 
@@ -81,8 +61,6 @@ void ListaDuzychLiczb::wstawNaPozycje(Liczba * liczba, int pozycja) {
 		for (int i = 1; i < pozycja; i++) {
 			element = element->wezNastepnyElement();
 		}
-		cout << pozycja << " . " << element->wezLiczbe();
-
 		//Podmiana 
 		ElementListy *tmp = new ElementListy(liczba);
 		tmp->ustawNastepnyElement(element);
@@ -195,7 +173,6 @@ void ListaDuzychLiczb::sortuj() {
 			if (porownajLiczby(element->wezLiczbe() , najMniejszy->wezLiczbe())) {
 				najMniejszy = element;
 				pozycja_najMniejszy = count;
-				cout << "Najmniejszy " << najMniejszy->wezLiczbe() << " | " << count << endl;
 			}
 			element = element->wezNastepnyElement();
 			count++;
@@ -222,8 +199,6 @@ bool ListaDuzychLiczb::porownajLiczby(char* a, char* b) {
 		return false;
 
 	}
-
-
 }
 
 

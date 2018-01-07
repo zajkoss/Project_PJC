@@ -4,3 +4,7 @@
 Liczba::Liczba() {
 
 }
+
+Liczba::~Liczba() {
+
+}

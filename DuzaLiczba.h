@@ -10,7 +10,6 @@ private:
 	char* wartosc;
 	int mLenght;
 
-	bool valid(char* cstr);
 	char* copyString(const char* cstr);
 	char* deleteSpaces(char* cstr);
 	
@@ -27,7 +26,7 @@ public:
 	DuzaLiczba(char* number = "0");
 	DuzaLiczba(const DuzaLiczba &copy);
 
-	virtual ~DuzaLiczba();
+	//virtual ~DuzaLiczba();
 	
 	friend istream& operator>>(istream&, const DuzaLiczba&);
 	friend ostream& operator<<(ostream&, const DuzaLiczba&);

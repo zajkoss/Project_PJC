@@ -7,25 +7,18 @@ using namespace std;
 
 DuzaLiczbaZespolona::DuzaLiczbaZespolona(int r, int img) {
 	real = new DuzaLiczba(r);
-	imagine = new DuzaLiczba(img);
-	cout << "KONSTRUKTOR INT " << *(this->real) << " "  << *(this->imagine) << endl;
-	
+	imagine = new DuzaLiczba(img);	
 }
 
 DuzaLiczbaZespolona::DuzaLiczbaZespolona(char* real, char * img ) {
 	this->real = new DuzaLiczba(real);
 	this->imagine = new DuzaLiczba(img);
-	cout << "KONSTRUKTOR CHAR " << *(this->real) << " " << *(this->imagine) << endl;
 }
 
 DuzaLiczbaZespolona::DuzaLiczbaZespolona(const DuzaLiczbaZespolona& copy) {
 	this->real = copy.real;
 	this->imagine = copy.imagine;
-	cout << "KONSTRUKTOR COPY " << *(this->real) << " " << *(this->imagine) << endl;
 }
-
-
-
 
 ostream& operator<<(ostream& stream, const DuzaLiczbaZespolona& item) {
 	stream << *(item.real) << "," << *(item.imagine) << endl;;
@@ -49,7 +42,6 @@ DuzaLiczbaZespolona& DuzaLiczbaZespolona::operator=(const DuzaLiczba& value) {
 	return *this;
 }
 
-// DELETE STARE WARTOSCI??/
 DuzaLiczbaZespolona DuzaLiczbaZespolona::operator+(const DuzaLiczbaZespolona& value) {
 	DuzaLiczbaZespolona output;
 	output.imagine = new DuzaLiczba(*(this->imagine)+(*(value.imagine)));
@@ -62,6 +54,9 @@ DuzaLiczbaZespolona operator-(const DuzaLiczbaZespolona & a) {
 	DuzaLiczbaZespolona output;
 	*output.real = *a.real * *a.minus;
 	*output.imagine = *a.imagine * * a.minus;
+    //Zwolnienie pamieci
+	delete a.real;
+	delete a.imagine;
 	return output;
 }
 

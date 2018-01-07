@@ -6,6 +6,7 @@ class Liczba {
 public:
 
 	Liczba();
+	~Liczba();
 
 	virtual char* Wartosc() = 0;
 
