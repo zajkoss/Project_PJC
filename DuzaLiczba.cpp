@@ -1,15 +1,12 @@
 #include "stdafx.h"
 #include "DuzaLiczba.h"
-
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-
-DuzaLiczba::DuzaLiczba(int number) {
+DuzaLiczba::DuzaLiczba(int liczba) {
 	
-	string s = to_string(number);
+	string s = to_string(liczba);
 	char const* tmp_number = s.c_str();
 	wartosc = copyString(tmp_number);
 	
@@ -22,9 +19,9 @@ DuzaLiczba::DuzaLiczba(int number) {
 	}
 }
 
-DuzaLiczba::~DuzaLiczba() {
-	delete[] wartosc;
-}
+//DuzaLiczba::~DuzaLiczba() {
+//	delete[] wartosc;
+//}
 
 DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),mLenght(strlen(number))  {	
 
@@ -40,28 +37,6 @@ DuzaLiczba::DuzaLiczba(char* number) : wartosc(number),mLenght(strlen(number))  
 };
 
 DuzaLiczba::DuzaLiczba(const DuzaLiczba &copy) : wartosc(copy.wartosc),mLenght(copy.mLenght),dodatnia(copy.dodatnia) {
-}
-
-bool DuzaLiczba::valid(char* cstr) {
-
-	if (cstr[0] = '-' || isdigit(cstr[0])) {
-		cstr++;
-		while (*cstr != 0) {
-			if (!isdigit(*cstr)) {
-				cout << "LOG.i(DuzaLiczba.cpp, Walidacja negatywna, " << endl;
-				return false;
-			}
-			cstr++;
-		}
-	}
-	else {
-		cout << "LOG.i(DuzaLiczba.cpp, Walidacja negatywna, " << endl;
-		return false;
-	}
-
-	cout << "LOG.i(DuzaLiczba.cpp, Walidacja pozytywna, " << endl;
-	return true;
-	
 }
 
 char* DuzaLiczba::copyString(const char* cstr) {
@@ -102,10 +77,6 @@ istream& operator>>(istream& stream, const DuzaLiczba& item) {
 	return stream;
 }
 
-//DuzaLiczba::~DuzaLiczba()
-//{
-//	delete[] wartosc;
-//}
 
 DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 
@@ -126,10 +97,12 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 		int a = shorterNum.wartosc[shorterNum.mLenght - 1 - i] - '0';
 		int b = longerNum.wartosc[longerNum.mLenght - 1 - i] - '0';
 		int c = a + b;
-		cout << " 1 " <<  wartosc[longerNum.mLenght - 1 - i] <<  endl;
 		longerNum.wartosc[longerNum.mLenght - 1 - i] = c + '0';
-		cout << " 2 " << wartosc[longerNum.mLenght - 1 - i] << endl;
+
 	}
+
+	//Zwalnianianie pamiêci zajmowan¹ przez niepotrzebna ju¿ tablice char
+	delete[] shorterNum.wartosc;
 
 	for (int i = longerNum.mLenght - 1; i >= 0; i--) {
 	
@@ -150,6 +123,8 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 			for (int i = 0; i <= longerNum.mLenght; i++) {
 				tmp[i + 1] = longerNum.wartosc[i];
 			}
+			//Zwalnianianie pamiêci zajmowan¹ przez niepotrzebna ju¿ tablice char
+			delete[] longerNum.wartosc;
 			longerNum.wartosc = tmp;
 			longerNum.mLenght = longerNum.mLenght + 1;
 		}
@@ -159,7 +134,7 @@ DuzaLiczba DuzaLiczba::add(const DuzaLiczba& addNumber) const {
 
 DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 
-	DuzaLiczba output = *this;
+	DuzaLiczba output(wartosc);
 	
 	if (equal(substractNumber)) {
 		DuzaLiczba zero(0);
@@ -167,13 +142,14 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 		return output;
 	}
 	if (bigger(substractNumber)) {
-		cout << "LICZBA A JEST WIEKSZA   !!!" << endl;
+
 		for (int i = 0 ; i < substractNumber.mLenght  ; i++) {
 			int b = substractNumber.wartosc[substractNumber.mLenght - 1 - i] - '0';
 			int a = output.wartosc[mLenght - 1 - i] - '0';
 			int c = a - b;
 			output.wartosc[mLenght - 1 - i] = c + '0';
 		}
+
 		for (int i = mLenght - 1 ; i >= 0 ; i--) {
 			
 			int a = output.wartosc[i] - '0';
@@ -194,7 +170,8 @@ DuzaLiczba DuzaLiczba::subtract(const DuzaLiczba &substractNumber) const{
 			for (int i = 0; i < mLenght; i++) {
 				tmp[i] = output.wartosc[i + 1];
 			}
-			//delete[]output.mNumber;
+			//Zwalnianianie pamiêci zajmowan¹ przez niepotrzebna ju¿ tablice char
+			delete[]output.wartosc;
 			output.wartosc = tmp;
 			output.mLenght = output.mLenght - 1;
 			a = output.wartosc[k++] - '0';
@@ -213,13 +190,11 @@ DuzaLiczba DuzaLiczba::multiply(const DuzaLiczba &multiplyNumber) const {
 	DuzaLiczba count("1");
 
 	while (!multiper.equal(counter)) {
-		cout << output << endl;
-		cout << " + " << endl;
-		cout << *this << endl;
-	
 		output = output.add(*this);
 		counter = counter.add(count);
 	}
+	//Zwalnianianie pamiêci zajmowan¹ przez niepotrzebna ju¿ tablice char
+	delete[] counter.wartosc, count.wartosc;
 	return output;
 }
 
@@ -234,6 +209,10 @@ DuzaLiczba DuzaLiczba::divide(const DuzaLiczba &addNumber) const {
 		divide = divide.subtract(divider);
 		counter = counter.add(count);
 	}
+
+	//Zwalnianianie pamiêci zajmowan¹ przez niepotrzebna ju¿ tablice char
+	delete[] count.wartosc;
+
 	return counter;
 }
 
@@ -248,7 +227,6 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 			temporary[i + 1] = output.wartosc[i];
 		}
 		temporary[output.mLenght + 2 - 1] = 0;
-		//delete[] output.mNumber;
 		output.wartosc = temporary;
 		output.mLenght = strlen(output.wartosc);
 		output.dodatnia = false;
@@ -260,7 +238,6 @@ DuzaLiczba DuzaLiczba::changeSign() const {
 			temporary[i-1] = output.wartosc[i];
 		}
 		temporary[output.mLenght - 1] = 0;
-		//delete[] output.mNumber;
 		output.wartosc = temporary;
 		output.mLenght = strlen(output.wartosc);
 		output.dodatnia = true;
@@ -391,7 +368,6 @@ DuzaLiczba DuzaLiczba::operator*(const DuzaLiczba& value)  {
 		output = output.changeSign();
 	}
 
-
 	return output;
 } 
 
@@ -414,12 +390,10 @@ DuzaLiczba DuzaLiczba::operator/(const DuzaLiczba& value)  {
 		output = output.changeSign();
 	}
 
-
 	return output;
 }
 
 DuzaLiczba & DuzaLiczba::operator+=(const DuzaLiczba& value) {
-	
 
 	if (this->dodatnia && value.dodatnia)
 		*this = add(value);
@@ -433,7 +407,6 @@ DuzaLiczba & DuzaLiczba::operator+=(const DuzaLiczba& value) {
 		*this = changeSign().add(value.changeSign());
 	}
 	return *this;
-	
 }
 
 DuzaLiczba & DuzaLiczba::operator-=(const DuzaLiczba& value) {
@@ -519,7 +492,6 @@ bool operator!=(const DuzaLiczba & a, const DuzaLiczba & b) {
 }
 
 DuzaLiczba operator-(const DuzaLiczba & a) {
-
 	return a.changeSign();
 }
 
