@@ -15,4 +15,6 @@ public:
 	void ustawPoprzedniElement(ElementListy *);
 
 	char* wezLiczbe();
+
+	ElementListy& operator=(const ElementListy& );
 };

@@ -3,7 +3,7 @@
 #include <iostream>
 
 ElementListy::ElementListy(Liczba  *value) : liczba(value){
-	cout << "Konstruktor element listy" << endl;
+	//cout << "Konstruktor element listy" << endl;
 }
 
 ElementListy* ElementListy::wezNastepnyElement() {
@@ -27,4 +27,12 @@ void ElementListy::ustawPoprzedniElement(ElementListy * value) {
 char* ElementListy::wezLiczbe() {
 	return  this->liczba->Wartosc();
 
+}
+
+
+ElementListy& ElementListy::operator=(const ElementListy& element) {
+	this->liczba = element.liczba;
+	this->nastepnyElement = element.nastepnyElement;
+	this->poprzedniElement = element.poprzedniElement;
+	return *this;
 }
